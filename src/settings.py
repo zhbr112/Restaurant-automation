@@ -81,7 +81,5 @@ class settings:
 
         if not isinstance(value, str) or len(value.strip())>5:
             raise Exception("Некорректный аргумент!")
-        
-        print(value.strip())
-        z=value.strip()
+
         self.__type_ownership = value.strip()

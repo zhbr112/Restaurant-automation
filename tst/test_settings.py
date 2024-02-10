@@ -5,12 +5,19 @@ from src.settings_maneger import settings_maneger
 
 class test_settings(unittest.TestCase):
     
-    def test_check_first_name(self):
+    def test_check_name(self):
         item = settings()
         
         item.name = "  Yaroslav  "
         
         assert item.name == "Yaroslav"
+
+    def test_check_type_ownership(self):
+        item = settings()
+        
+        item.type_ownership = "    OOO    "
+        
+        assert item.type_ownership == "OOO"
 
     def test_check_open_settings(self):
         maneger = settings_maneger()

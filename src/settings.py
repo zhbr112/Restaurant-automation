@@ -50,6 +50,7 @@ class settings:
     def cor_score(self):
         return self.__cor_score
    
+   
     @cor_score.setter
     def cor_score(self, value: int):
 

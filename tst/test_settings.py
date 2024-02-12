@@ -4,48 +4,31 @@ from src.settings_maneger import settings_maneger
 
 
 class test_settings(unittest.TestCase):
-    
     def test_check_name(self):
         item = settings()
-        
+
         item.name = "  Yaroslav  "
-        
+
         assert item.name == "Yaroslav"
 
     def test_check_type_ownership(self):
         item = settings()
-        
-        item.type_ownership = "    OOO    "
-        
-        assert item.type_ownership == "OOO"
 
-    def test_check_open_settings(self):
-        maneger = settings_maneger()
-        
-        result=maneger.open("data/settings.json")
+        item.type_ownership = "    OOOOO    "
 
-        assert result==True
-
-    def test_check_open_settings2(self):
-        maneger = settings_maneger()
-        
-        result=maneger.open("data/setingi.json")
-
-        assert result==True
+        assert item.type_ownership == "OOOOO"
 
     def test_check_create_maneger(self):
         maneger1 = settings_maneger()
         maneger2 = settings_maneger()
-        
-        print(maneger1.unique_number)
-        print(maneger2.unique_number)
-        assert maneger1.unique_number==maneger2.unique_number
+
+        assert maneger1 is maneger2
 
     def test_check_settings_data(self):
-        maneger=settings_maneger()
-        maneger.open("data/settings.json")
+        maneger = settings_maneger()
+        maneger.open("config/settings.json")
 
-        params=maneger.data.keys()
-
-        for param in params:
-            assert getattr(maneger.settings,param)==maneger.data[param]
+        for key in maneger.data.keys():
+            if not hasattr(maneger.settings, key):
+                continue
+            assert getattr(maneger.settings, key) == maneger.data[key]

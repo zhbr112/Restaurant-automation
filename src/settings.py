@@ -1,86 +1,153 @@
+# Класс содержащий общие настройки приложения
 class settings:
-    __first_name = ""
-    __INN=None
-    __BIK=None
-    __score=None
-    __cor_score=None
-    __name=""
-    __type_ownership=""
+    # ИНН
+    __INN = None
+    # БИК
+    __BIK = None
+    # Счет
+    __score = None
+    # Корреспондентский счет
+    __cor_score = None
+    # Наименование
+    __name = ""
+    # Вид собственности
+    __type_ownership = ""
+
+    def __validate(self, value, type_=None, len_: int = None) -> bool:
+        """
+            Валидация аргумента по типу и дате
+        Args:
+            value (any): Аргумент
+            type_ (any): Ожидаемый тип
+            len_ (int): Ожидаемая длина
+
+        Raises:
+            TypeError: Некорректный тип
+            ValueError: Некорректная длина
+
+        Returns:
+            True или Exception
+        """
+
+        # Проверка типа
+        if type_ is not None and not isinstance(value, type_):
+            raise TypeError("Некорректный тип")
+
+        # Проверка аргумента
+        if len_ is not None and len(str(value).strip()) != len_:
+            raise ValueError("Некорректная длина")
+
+        return True
 
     @property
     def INN(self):
         return self.__INN
-    
+
     @INN.setter
-    def INN(self, value: int): 
+    def INN(self, value: int):
+        """
+            ИНН
+        Args:
+            value (int): Значение ИНН, 12 символов
 
-        if not isinstance(value, int) or len(str(value))!=12:
-            raise Exception("Некорректный аргумент!")
-        
+        Raises:
+            TypeError: Некорректный тип аргумента
+            ValueError: Некорректная длина аргумента
+        """
+
+        self.__validate(value, int, 12)
         self.__INN = value
-
 
     @property
     def BIK(self):
         return self.__BIK
-    
+
     @BIK.setter
     def BIK(self, value: int):
+        """
+            БИК
+        Args:
+            value (int): Значение БИК, 9 символов
 
-        if not isinstance(value, int) or len(str(value))!=9:
-            raise Exception("Некорректный аргумент!")
-        
+        Raises:
+            TypeError: Некорректный тип аргумента
+            ValueError: Некорректная длина аргумента
+        """
+
+        self.__validate(value, int, 9)
         self.__BIK = value
-
 
     @property
     def score(self):
         return self.__score
-    
+
     @score.setter
     def score(self, value: int):
+        """
+            Счет
+        Args:
+            value (int): Номер счета, 11 символов
 
-        if not isinstance(value, int) or len(str(value))!=11:
-            raise Exception("Некорректный аргумент!")
-        
+        Raises:
+            TypeError: Некорректный тип аргумента
+            ValueError: Некорректная длина аргумента
+        """
+
+        self.__validate(value, int, 11)
         self.__score = value
-
 
     @property
     def cor_score(self):
         return self.__cor_score
-   
-   
+
     @cor_score.setter
     def cor_score(self, value: int):
+        """
+            Корреспондентский счет
+        Args:
+            value (int): Номер Корреспондентского счета, 11 символов
 
-        if not isinstance(value, int) or len(str(value))!=11:
-            raise Exception("Некорректный аргумент!")
-        
+        Raises:
+            TypeError: Некорректный тип аргумента
+            ValueError: Некорректная длина аргумента
+        """
+
+        self.__validate(value, int, 11)
         self.__cor_score = value
-
 
     @property
     def name(self):
         return self.__name
-    
+
     @name.setter
     def name(self, value: str):
+        """
+            Наименование
+        Args:
+            value (str): Наименование
 
-        if not isinstance(value, str):
-            raise Exception("Некорректный аргумент!")
-        
+        Raises:
+            TypeError: Некорректный тип аргумента
+        """
+
+        self.__validate(value, str)
         self.__name = value.strip()
-
 
     @property
     def type_ownership(self):
         return self.__type_ownership
-    
+
     @type_ownership.setter
     def type_ownership(self, value: str):
+        """
+            Вид собственности
+        Args:
+            value (str): Вид собственности, 5 символов
 
-        if not isinstance(value, str) or len(value.strip())>5:
-            raise Exception("Некорректный аргумент!")
+        Raises:
+            TypeError: Некорректный тип аргумента
+            ValueError: Некорректная длина аргумента
+        """
 
+        self.__validate(value, str, 5)
         self.__type_ownership = value.strip()

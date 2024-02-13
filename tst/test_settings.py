@@ -14,7 +14,7 @@ class test_settings(unittest.TestCase):
     def test_check_type_ownership(self):
         item = settings()
 
-        item.type_ownership = "    OOOOO    "
+        item.type_ownership = "   OOOOO   "
 
         assert item.type_ownership == "OOOOO"
 

@@ -1,6 +1,6 @@
 import os, json, pathlib
 from src.settings import settings
-
+from src.argument_exception import arguent_exception
 
 class settings_maneger(object):
     # Путь до файла настроек и имя самого файла
@@ -22,11 +22,11 @@ class settings_maneger(object):
         """
             Заполенние объекта настроек
         Raises:
-            Exception: Невозможно создать объект настроек
+            arguent_exception: Невозможно создать объект настроек
         """
         # Проверяем, что бы словарь не был пуст
         if len(self.__data) == 0:
-            raise Exception("Невозможно создать объект настроек")
+            raise arguent_exception("Невозможно создать объект настроек")
         
         # Идем по всем ключам полученным из файла, и если у
         # объекта настроект есть это поле, заполняем его
@@ -42,17 +42,17 @@ class settings_maneger(object):
             file_name (str): Путь до файла настроек и имя самого файла
 
         Raises:
-            TypeError: Неверный тип аргумента
-            ValueError: Неверная длина аргумента
+            arguent_exception: Неверный тип аргумента
+            arguent_exception: Неверная длина аргумента
         """
 
         # Проверяем, что бы путь был str
         if not isinstance(file_name, str):
-            raise TypeError("Неверный тип аргумента")
+            raise arguent_exception("Неверный тип аргумента")
         
         # Проверяем, что бы путь не был пуст
         if file_name == "":
-            raise ValueError("Неверная длина аргумента")
+            raise arguent_exception("Неверная длина аргумента")
         
         # Убираем лишние пробелы
         self.__file_name = file_name.strip()
@@ -61,7 +61,7 @@ class settings_maneger(object):
         try:
             self.__open()
         except:
-            raise Exception()
+            raise arguent_exception("Неудалось открыть и считать файл")
         
         # Заполенние объекта настроек
         self.__convert()
@@ -71,7 +71,7 @@ class settings_maneger(object):
         """
             Открытие файла настроек
         Raises:
-            FileNotFoundError: Ошибка при открытии файла
+            arguent_exception: Ошибка при открытии файла
         """
 
         # Получаем полный путь к файлу
@@ -79,7 +79,7 @@ class settings_maneger(object):
 
         # Проверяем существует ли файл по данному пути
         if not os.path.exists(settings_file):
-            raise FileNotFoundError("Невозможно загрузить файл настроек")
+            raise arguent_exception("Невозможно загрузить файл настроек")
         
         # Открываем файл и читаем json
         with open(settings_file, "r") as read_file:

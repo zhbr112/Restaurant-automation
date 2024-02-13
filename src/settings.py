@@ -13,6 +13,8 @@ class settings:
     # Вид собственности
     __type_ownership = ""
 
+
+
     def __validate(self, value, type_=None, len_: int = None) -> bool:
         """
             Валидация аргумента по типу и дате

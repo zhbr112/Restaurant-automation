@@ -151,3 +151,6 @@ class settings:
 
         self.__validate(value, str, 5)
         self.__type_ownership = value.strip()
+
+settings=settings()
+settings.BIK="123456789"

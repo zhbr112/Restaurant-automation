@@ -1,8 +1,8 @@
-import os, json, pathlib
+import os, json, pathlib, uuid
 from src.settings import settings
 from src.argument_exception import arguent_exception
 
-class settings_maneger(object):
+class settings_manager():
     # Путь до файла настроек и имя самого файла
     __file_name = ""
 
@@ -12,11 +12,17 @@ class settings_maneger(object):
     # Объект настроект
     __settings = settings()
 
+    # Уникальный номер
+    __id: uuid.UUID
+
     # Если инстанс существует возращаем его, если нет то создаем. (singleton)
     def __new__(cls):
         if not hasattr(cls, "instance"):
-            cls.instance = super(settings_maneger, cls).__new__(cls)
+            cls.instance = super(settings_manager, cls).__new__(cls)
         return cls.instance
+
+    def __init__(self):
+        self.__id = uuid.uuid4()
 
     def __convert(self):
         """

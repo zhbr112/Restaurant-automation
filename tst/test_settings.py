@@ -1,6 +1,6 @@
 import unittest
 from src.settings import settings
-from src.settings_maneger import settings_maneger
+from src.settings_manager import settings_manager
 
 
 class test_settings(unittest.TestCase):
@@ -19,16 +19,16 @@ class test_settings(unittest.TestCase):
         assert item.type_ownership == "OOOOO"
 
     def test_check_create_maneger(self):
-        maneger1 = settings_maneger()
-        maneger2 = settings_maneger()
+        manager1 = settings_manager()
+        manager2 = settings_manager()
 
-        assert maneger1 is maneger2
+        assert manager1 is manager2
 
     def test_check_settings_data(self):
-        maneger = settings_maneger()
-        maneger.open("config/settings.json")
+        manager = settings_manager()
+        manager.open("config/settings.json")
 
-        for key in maneger.data.keys():
-            if not hasattr(maneger.settings, key):
+        for key in manager.data.keys():
+            if not hasattr(manager.settings, key):
                 continue
-            assert getattr(maneger.settings, key) == maneger.data[key]
+            assert getattr(manager.settings, key) == manager.data[key]

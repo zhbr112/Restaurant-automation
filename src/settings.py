@@ -15,6 +15,7 @@ class settings:
     # Вид собственности
     __type_ownership = ""
 
+
     def __validate(self, value, type_=None, len_: int = None) -> bool:
         """
             Валидация аргумента по типу и дате
@@ -41,6 +42,7 @@ class settings:
 
         return True
 
+
     @property
     def INN(self):
         return self.__INN
@@ -59,6 +61,7 @@ class settings:
 
         self.__validate(value, int, 12)
         self.__INN = value
+
 
     @property
     def BIK(self):
@@ -79,6 +82,7 @@ class settings:
         self.__validate(value, int, 9)
         self.__BIK = value
 
+
     @property
     def score(self):
         return self.__score
@@ -97,6 +101,7 @@ class settings:
 
         self.__validate(value, int, 11)
         self.__score = value
+
 
     @property
     def cor_score(self):
@@ -117,6 +122,7 @@ class settings:
         self.__validate(value, int, 11)
         self.__cor_score = value
 
+
     @property
     def name(self):
         return self.__name
@@ -134,6 +140,7 @@ class settings:
 
         self.__validate(value, str)
         self.__name = value.strip()
+
 
     @property
     def type_ownership(self):

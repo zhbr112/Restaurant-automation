@@ -4,29 +4,36 @@ from src.argument_exception import arguent_exception
 
 class abstract_reference:
     __id: uuid.UUID
-    __name: str = ""
+    __name_model: str = ""
 
     def __init__(self, name: str = None) -> None:
-        self.name = name
-        self.__id = uuid.uuid4
+        self.name_model = name
+        self.__id = uuid.uuid4()
 
-    def __validate(self, value, type_, source) -> bool:
+    def _validate(self, value, type_, len_=None) -> bool:
 
-        # Проверка типа
+        #Проверка типа
         if not isinstance(value, type_):
             raise arguent_exception("Некорректный тип")
 
         # Проверка аргумента
         if len(str(value).strip()) == 0:
             raise arguent_exception("Пустой аргумент")
+        
+        if len_ is not None and len(str(value).strip()) >=len_:
+            raise arguent_exception("Некорректная длина аргумента")
 
         return True
 
     @property
-    def name(self):
-        return self.__name
+    def id(self):
+        return self.__id
+    
+    @property
+    def name_model(self):
+        return self.__name_model
 
-    @name.setter
-    def name(self, value: str):
-        self.__validate(value, str)
-        self.__name = value.strip()
+    @name_model.setter
+    def name_model(self, value: str):
+        self._validate(value, str, 50)
+        self.__name_model = value

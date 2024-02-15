@@ -9,29 +9,40 @@ import unittest
 
 class test_models(unittest.TestCase):
     def test_check_set_settings_company(self):
+        # Подготовка
         manager = settings_manager()
         manager.open("config/settings.json")
         company = company_model(manager.settings)
+
+        # Действие
         for key in manager.data.keys():
             if not hasattr(company, key):
                 continue
             print(key, getattr(company, key), manager.data[key])
+
+            # Проверка
             assert getattr(company, key) == manager.data[key]
 
     def test_check_unit_measurement_model(self):
+        # Подготовка
         base_measurement = unit_measurement_model("грамм", 1)
         new_measurement = unit_measurement_model("кг", 1000, base_measurement)
+
+        # Действие
         print(
             new_measurement.parent.basic_unit_measurement,
             base_measurement.basic_unit_measurement,
         )
         print(new_measurement.basic_unit_measurement)
+
+        # Проверка
         assert (
             new_measurement.parent.basic_unit_measurement
             == base_measurement.basic_unit_measurement
         )
 
     def test_check_models(self):
+        # Подготовка
         try:
             unit_measurement1 = unit_measurement_model("грамм", 1)
             unit_measurement2 = unit_measurement_model("кг", 1000, unit_measurement1)
@@ -40,7 +51,10 @@ class test_models(unittest.TestCase):
             nomenclature1 = nomenclature_model("1dsf")
             nomenclature2 = nomenclature_model("1dsfddfdsdsssssssssssssssssssf")
 
+            # Действие
+
+            # Проверка
             assert True
-            
+
         except:
             assert False

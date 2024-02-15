@@ -17,10 +17,10 @@ class company_model(abstract_reference):
     # Инициализация объекта класса
     def __init__(self, settings) -> None:
         super().__init__("organization_model")
-        self.__INN = settings.INN
-        self.__BIK = settings.BIK
-        self.__score = settings.score
-        self.__type_ownership = settings.type_ownership
+        keys=[i for i in dir(self) if i[0]!='_']
+        for key in keys:
+            if hasattr(settings, key):
+                setattr(self, f'_company_model__{key}', getattr(settings,key))
 
     @property
     def INN(self):

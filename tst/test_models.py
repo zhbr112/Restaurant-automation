@@ -44,6 +44,9 @@ class test_models(unittest.TestCase):
     def test_check_models(self):
         # Подготовка
         try:
+            manager = settings_manager()
+            manager.open("config/settings.json")
+            company = company_model(manager.settings)
             unit_measurement1 = unit_measurement_model("грамм", 1)
             unit_measurement2 = unit_measurement_model("кг", 1000, unit_measurement1)
             group_nomenclature = group_nomenclature_model()
@@ -53,7 +56,7 @@ class test_models(unittest.TestCase):
 
             # Действие
             print(unit_measurement2.basic_unit_measurement.basic_unit_measurement.name_measurement)
-            
+
             # Проверка
             assert True
 

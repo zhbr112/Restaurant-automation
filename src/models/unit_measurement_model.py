@@ -5,11 +5,11 @@ from src.error_proxy import error_proxy
 
 # Единица измерения
 class unit_measurement_model(abstract_reference):
-    # Базовая единица измерения
+    # Название единицы измерения
     __name_measurement = None
     # Коэффициент пересчета
     __conversion_factor: int = None
-    # Родитель
+    # Базовая единица измерения
     __basic_unit_measurement = None
 
     # Инициализация объекта класса
@@ -22,10 +22,10 @@ class unit_measurement_model(abstract_reference):
         super().__init__("unit_measurement_model")
         self.name_measurement = name_measurement
         self.conversion_factor = conversion_factor
-        if basic_unit_measurement is None:
-            self.__basic_unit_measurement=self
-        else:
-            self.__basic_unit_measurement = basic_unit_measurement
+        self.__basic_unit_measurement=self
+        
+        if basic_unit_measurement is not None:
+            self.__basic_unit_measurement=basic_unit_measurement
 
     @property
     def name_measurement(self):

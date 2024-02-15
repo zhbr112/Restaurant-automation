@@ -30,15 +30,15 @@ class test_models(unittest.TestCase):
 
         # Действие
         print(
-            new_measurement.parent.basic_unit_measurement,
-            base_measurement.basic_unit_measurement,
+            new_measurement.basic_unit_measurement.basic_unit_measurement,
+            base_measurement.name_measurement,
         )
-        print(new_measurement.basic_unit_measurement)
+        print(new_measurement.name_measurement)
 
         # Проверка
         assert (
-            new_measurement.parent.basic_unit_measurement
-            == base_measurement.basic_unit_measurement
+            new_measurement.basic_unit_measurement.name_measurement
+            == base_measurement.name_measurement
         )
 
     def test_check_models(self):
@@ -52,7 +52,8 @@ class test_models(unittest.TestCase):
             nomenclature2 = nomenclature_model("1dsfddfdsdsssssssssssssssssssf")
 
             # Действие
-
+            print(unit_measurement2.basic_unit_measurement.basic_unit_measurement.name_measurement)
+            
             # Проверка
             assert True
 

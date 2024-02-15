@@ -6,30 +6,33 @@ from src.error_proxy import error_proxy
 # Единица измерения
 class unit_measurement_model(abstract_reference):
     # Базовая единица измерения
-    __basic_unit_measurement: str = None
+    __name_measurement = None
     # Коэффициент пересчета
     __conversion_factor: int = None
     # Родитель
-    __parent = None
+    __basic_unit_measurement = None
 
     # Инициализация объекта класса
     def __init__(
         self,
-        basic_unit_measurement: str = None,
+        name_measurement: str = None,
         conversion_factor: int = None,
-        parent=None,
+        basic_unit_measurement=None
     ):
         super().__init__("unit_measurement_model")
-        self.basic_unit_measurement = basic_unit_measurement
+        self.name_measurement = name_measurement
         self.conversion_factor = conversion_factor
-        self.__parent = parent
+        if basic_unit_measurement is None:
+            self.__basic_unit_measurement=self
+        else:
+            self.__basic_unit_measurement = basic_unit_measurement
 
     @property
-    def basic_unit_measurement(self):
-        return self.__basic_unit_measurement
+    def name_measurement(self):
+        return self.__name_measurement
 
-    @basic_unit_measurement.setter
-    def basic_unit_measurement(self, value: str):
+    @name_measurement.setter
+    def name_measurement(self, value: str):
         """
             Базовая единица измерения
         Args:
@@ -37,7 +40,7 @@ class unit_measurement_model(abstract_reference):
         """
 
         self._validate(value, str)
-        self.__basic_unit_measurement = value
+        self.__name_measurement = value
 
     @property
     def conversion_factor(self):
@@ -51,9 +54,11 @@ class unit_measurement_model(abstract_reference):
             value (str): Коэффициент пересчета
         """
 
+        if value<=0:
+            raise arguent_exception('Неверный коэфицент пересчета')
         self._validate(value, int)
         self.__conversion_factor = value
 
     @property
-    def parent(self):
-        return self.__parent
+    def basic_unit_measurement(self):
+        return self.__basic_unit_measurement

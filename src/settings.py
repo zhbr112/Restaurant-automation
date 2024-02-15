@@ -1,3 +1,6 @@
+from src.argument_exception import arguent_exception
+
+
 # Класс содержащий общие настройки приложения
 class settings:
     # ИНН
@@ -15,15 +18,15 @@ class settings:
 
     def __validate(self, value, type_=None, len_: int = None) -> bool:
         """
-            Валидация аргумента по типу и дате
+            Валидация аргумента по типу и длине
         Args:
             value (any): Аргумент
             type_ (any): Ожидаемый тип
             len_ (int): Ожидаемая длина
 
         Raises:
-            TypeError: Некорректный тип
-            ValueError: Некорректная длина
+            arguent_exception: Некорректный тип
+            arguent_exception: Некорректная длина
 
         Returns:
             True или Exception
@@ -31,11 +34,11 @@ class settings:
 
         # Проверка типа
         if type_ is not None and not isinstance(value, type_):
-            raise TypeError("Некорректный тип")
+            raise arguent_exception("Некорректный тип")
 
         # Проверка аргумента
         if len_ is not None and len(str(value).strip()) != len_:
-            raise ValueError("Некорректная длина")
+            raise arguent_exception("Некорректная длина")
 
         return True
 
@@ -51,8 +54,8 @@ class settings:
             value (int): Значение ИНН, 12 символов
 
         Raises:
-            TypeError: Некорректный тип аргумента
-            ValueError: Некорректная длина аргумента
+            arguent_exception: Некорректный тип аргумента
+            arguent_exception: Некорректная длина аргумента
         """
 
         self.__validate(value, int, 12)
@@ -70,8 +73,8 @@ class settings:
             value (int): Значение БИК, 9 символов
 
         Raises:
-            TypeError: Некорректный тип аргумента
-            ValueError: Некорректная длина аргумента
+            arguent_exception: Некорректный тип аргумента
+            arguent_exception: Некорректная длина аргумента
         """
 
         self.__validate(value, int, 9)
@@ -89,8 +92,8 @@ class settings:
             value (int): Номер счета, 11 символов
 
         Raises:
-            TypeError: Некорректный тип аргумента
-            ValueError: Некорректная длина аргумента
+            arguent_exception: Некорректный тип аргумента
+            arguent_exception: Некорректная длина аргумента
         """
 
         self.__validate(value, int, 11)
@@ -108,8 +111,8 @@ class settings:
             value (int): Номер Корреспондентского счета, 11 символов
 
         Raises:
-            TypeError: Некорректный тип аргумента
-            ValueError: Некорректная длина аргумента
+            arguent_exception: Некорректный тип аргумента
+            arguent_exception: Некорректная длина аргумента
         """
 
         self.__validate(value, int, 11)
@@ -127,7 +130,7 @@ class settings:
             value (str): Наименование
 
         Raises:
-            TypeError: Некорректный тип аргумента
+            arguent_exception: Некорректный тип аргумента
         """
 
         self.__validate(value, str)
@@ -145,12 +148,9 @@ class settings:
             value (str): Вид собственности, 5 символов
 
         Raises:
-            TypeError: Некорректный тип аргумента
-            ValueError: Некорректная длина аргумента
+            arguent_exception: Некорректный тип аргумента
+            arguent_exception: Некорректная длина аргумента
         """
 
         self.__validate(value, str, 5)
         self.__type_ownership = value.strip()
-
-settings=settings()
-settings.BIK="123456789"

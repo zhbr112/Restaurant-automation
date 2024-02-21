@@ -15,6 +15,7 @@ class settings:
     __name = ""
     # Вид собственности
     __type_ownership = ""
+    __first_start=True
 
     def __validate(self, value, type_=None, len_: int = None) -> bool:
         """
@@ -154,3 +155,11 @@ class settings:
 
         self.__validate(value, str, 5)
         self.__type_ownership = value.strip()
+
+    @property
+    def is_first_start(self):
+        return self.__first_start
+
+    @is_first_start.setter
+    def is_first_start(self,value):
+        self.__first_start=value

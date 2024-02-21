@@ -8,11 +8,13 @@ from src.models.group_nomenclature_model import group_nomenclature_model
 class nomenclature_model(abstract_reference):
     # Полное наименование
     __full_name = None
+    __unit_measurement=None
 
     # Инициализация объекта класса
-    def __init__(self, full_name=None) -> None:
+    def __init__(self, full_name=None, unit_measurement=None) -> None:
         super().__init__("nomenclature_model")
         self.full_name = full_name
+        self.unit_measurement=unit_measurement
 
     @property
     def full_name(self):
@@ -27,3 +29,12 @@ class nomenclature_model(abstract_reference):
         """
         self._validate(value, str, 255)
         self.__full_name = value
+
+    @property
+    def unit_measurement(self):
+        return self.__unit_measurement
+
+    @unit_measurement.setter
+    def unit_measurement(self, value=None):
+        #self._validate(value, str, 255)
+        self.__unit_measurement = value

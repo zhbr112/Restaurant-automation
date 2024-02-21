@@ -62,3 +62,30 @@ class unit_measurement_model(abstract_reference):
     @property
     def basic_unit_measurement(self):
         return self.__basic_unit_measurement
+    
+    @staticmethod
+    def create_gramm():
+        item=unit_measurement_model('грамм', 1, None)
+        return item
+    
+    @staticmethod
+    def create_killogramm():
+        base=unit_measurement_model.create_gramm()
+        item=unit_measurement_model('киллограмм', 1000, base)
+        return item
+    
+    @staticmethod
+    def create_thing():
+        item=unit_measurement_model('шт', 1, None)
+        return item
+    
+    @staticmethod
+    def create_mililitr():
+        item=unit_measurement_model('мл', 1, None)
+        return item    
+    
+    @staticmethod
+    def create_litr():
+        base=unit_measurement_model.create_mililitr()
+        item=unit_measurement_model('литр', 1000, base)
+        return item

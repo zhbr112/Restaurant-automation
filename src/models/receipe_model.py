@@ -1,51 +1,102 @@
 from src.abstract_reference import abstract_reference
-from src.models.unit_measurement_model import unit_measurement_model
-from src.models.nomenclature_model import nomenclature_model
-from src.argument_exception import arguent_exception
+from src.models.receipe_row_model import receipe_row_model
 
 
-# Номенклатура
+
 class receipe_model(abstract_reference):
-    __nomenclature:nomenclature_model=None
-    __size:int=0
-    __unit:unit_measurement_model=None
-    __name_receipe=''
+    # Вес брутто
+    _brutto: int = 0
+    
+    # Вес нетто
+    _netto: int = 0
 
-    def __init__(self,nomenclature:nomenclature_model=None, size:int=0, unit:unit_measurement_model=None):
-        super().__init__('receipe_model')
-        self.nomenclature=nomenclature
-        self.size=size
-        self.unit=unit
-        self.name_receipe=f'{self.__nomenclature.full_name}, {self.__nomenclature.unit_measurement}'
+    # Состав рецепта
+    _rows = list()
+    
+    # Инструкции
+    _instructions = list()
+    
+    # Описание
+    _comments: str = ""
+    
+    def add(self, row: receipe_row_model):
+        """
+            Добавить состав блюда
+        """
+        self._rows[row.name] = row
+        self.__calc_brutto()
+        
 
-    @property
-    def nomenclature(self):
-        return self.__nomenclature
-
-    @nomenclature.setter
-    def nomenclature(self,value):
-        self.__nomenclature=value
+    def __calc_brutto(self):
+        """
+            Перерасчет брутто
+        """
+        self._brutto = 0
+        for position  in self._rows:
+            self._brutto += self._rows[position].size 
+            
+    @property         
+    def netto(self):
+        return self._netto                        
+        
+    @netto.setter
+    def netto(self, value: int):
+        """
+            Вес нетто
+        """
+        self._netto = value
+        
+    @property    
+    def instructions(self):
+        """
+           Инструкция для приготовления
+        """
+        return self._instructions  
     
     @property
-    def size(self):
-        return self.__size
-
-    @size.setter
-    def size(self,value):
-        self.__size=value
+    def comments(self):
+        return self._comments
     
-    @property
-    def unit(self):
-        return self.__unit
-
-    @unit.setter
-    def unit(self,value):
-        self.__unit=value
+    @comments.setter
+    def comments(self, value: str):
+        """
+            Описание блюда
+        """
+        self._comments = value   
     
-    @property
-    def name_receipe(self):
-        return self.__name_receipe
-
-    @name_receipe.setter
-    def name_receipe(self,value):
-        self.__name_receipe=value
+    
+    @staticmethod
+    def create_receipt(comments: str, items: list, data: list):
+        """
+            Фабричный метод. Сформировать рецепт
+        Args:
+            name (str): Наименование рецепта
+            comments (str): Приготовление
+            items (list): Состав рецепта
+            data (list): Список номенклатуры
+        """
+        
+        
+        # Подготовим словарь со списком номенклатуры
+        nomenclatures = data  
+        receipt = receipe_model()
+        
+        for position in items:
+            # Получаем список кортежей и берем первое значение
+            _list =  list(position.items())        
+            tuple = list(_list)[0]         
+            nomenclature_name = tuple[0]
+            size = tuple[1]          
+            nomenclature = nomenclatures[nomenclature_name]
+            
+            # Определяем единицу измерения
+            if nomenclature.unit.base_unit is None:
+                unit = nomenclature.unit
+            else:
+                unit = nomenclature.unit.base_unit    
+            
+            # Создаем запись в рецепте
+            row = receipe_row_model(nomenclature, size, unit)
+            receipt.add(row)
+        
+        return receipt

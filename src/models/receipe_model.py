@@ -11,7 +11,7 @@ class receipe_model(abstract_reference):
     _netto: int = 0
 
     # Состав рецепта
-    _rows = list()
+    _rows = {}
     
     # Инструкции
     _instructions = list()
@@ -19,11 +19,14 @@ class receipe_model(abstract_reference):
     # Описание
     _comments: str = ""
     
+    def __init__(self):
+        super().__init__('receipe_model')
+
     def add(self, row: receipe_row_model):
         """
             Добавить состав блюда
         """
-        self._rows[row.name] = row
+        self._rows[row.name_receipe] = row
         self.__calc_brutto()
         
 
@@ -66,7 +69,7 @@ class receipe_model(abstract_reference):
     
     
     @staticmethod
-    def create_receipt(comments: str, items: list, data: list):
+    def create_receipt(comments: str, items: list, data):
         """
             Фабричный метод. Сформировать рецепт
         Args:
@@ -78,7 +81,7 @@ class receipe_model(abstract_reference):
         
         
         # Подготовим словарь со списком номенклатуры
-        nomenclatures = data  
+        nomenclatures = data.list_positions
         receipt = receipe_model()
         
         for position in items:
@@ -86,14 +89,11 @@ class receipe_model(abstract_reference):
             _list =  list(position.items())        
             tuple = list(_list)[0]         
             nomenclature_name = tuple[0]
-            size = tuple[1]          
-            nomenclature = nomenclatures[nomenclature_name]
-            
-            # Определяем единицу измерения
-            if nomenclature.unit.base_unit is None:
-                unit = nomenclature.unit
-            else:
-                unit = nomenclature.unit.base_unit    
+            size = tuple[1]
+            for i in nomenclatures:
+                if i.full_name==nomenclature_name:
+                    nomenclature = i
+                    unit = i.unit_measurement.basic_unit_measurement   
             
             # Создаем запись в рецепте
             row = receipe_row_model(nomenclature, size, unit)

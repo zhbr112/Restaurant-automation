@@ -44,11 +44,13 @@ class start_factory:
     @staticmethod
     def create_receipts():
         result = []
-        data = start_factory.create_nomenclatures().list_positions
+        data = start_factory.create_nomenclature()
         
         # ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ
-        items = {"Мука пшеничная": 100, "Сахар": 80, "Сливочное масло": 70, "Яйца": 1 , "Ванилин": 5 }
-        item = receipe_model.create_receipt("ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ", "", items, data)
+        items = [ {"Мука пшеничная": 100}, {"Сахар": 80}, {"Сливочное масло": 70},
+                  {"Яйца": 1} , {"Ванилин": 5 }
+                ]
+        item = receipe_model.create_receipt("ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ", items, data)
         
         # Шаги приготовления
         item.instructions.append("Масло положите в сотейник с толстым дном. Растопите его на маленьком огне на плите, на водяной бане либо в микроволновке.")
@@ -61,12 +63,13 @@ class start_factory:
         result.append( item )
         
         # Цезарь с курицей
-        items =  {"Куриное филе": 200, "Салат Романо": 50, "Сыр Пармезан": 50,
-                  "Чеснок": 10 , "Белый хлеб": 30 , "Соль": 5, "Черный перец": 2,
-                  "Оливковое масло": 10, "Лимонный сок": 5, "Горчица дижонская": 5,
-                  "Яйца": 2}
+        items = [ {"Куриное филе": 200}, {"Салат Романо": 50}, {"Сыр Пармезан": 50},
+                  {"Чеснок": 10} , {"Белый хлеб": 30 }, {"Соль": 5}, {"Черный перец": 2},
+                  {"Оливковое масло": 10}, {"Лимонный сок": 5}, {"Горчица дижонская": 5},
+                  {"Яйца": 2}
+                ]
                 
-        item =  receipe_model.create_receipt("Цезарь с курицей", "", items, data)
+        item =  receipe_model.create_receipt("Цезарь с курицей", items, data)
         item.instructions.append("Нарезать куриное филе кубиками, нарубите чеснок, нарежьте хлеб на кубики.")
         item.instructions.append("Очистить салат и обсушить его.")
         item.instructions.append("Натереть сыр Пармезан на терке.")
@@ -78,8 +81,8 @@ class start_factory:
         result.append(item)
         
         # Безе
-        items = {"Яйца": 3, "Сахарная пудра":180, "Ванилиин" : 5, "Корица": 5 ,"Какао": 20} 
-        result.append( receipe_model.create_receipt("Безе", "", items, data))
+        items = [ {"Яйца": 3}, {"Сахарная пудра":180}, {"Ванилиин" : 5}, {"Корица": 5} ,{"Какао": 20} ]
+        result.append( receipe_model.create_receipt("Безе", items, data))
         return result
 
 

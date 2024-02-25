@@ -17,6 +17,7 @@ class test_factory(unittest.TestCase):
             print(item.full_name,item.unit_measurement.name_measurement)
 
         assert len(group.list_positions)>0
+        
 
     def test_check_factory_create_method(self):
         manager = settings_manager()
@@ -27,3 +28,6 @@ class test_factory(unittest.TestCase):
         assert factory.storage is not None
         assert factory.storage.data is not None
         print(factory.storage.data)
+
+    def test_check__factory_create_receipe(self):
+        assert start_factory.create_receipts()[0]._rows['Мука пшеничная, киллограмм'].size == 100

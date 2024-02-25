@@ -16,7 +16,7 @@ class receipe_row_model(abstract_reference):
         self.nomenclature=nomenclature
         self.size=size
         self.unit=unit
-        self.name_receipe=f'{self.__nomenclature.full_name}, {self.__nomenclature.unit_measurement}'
+        self.name_receipe=f'{self.__nomenclature.full_name}, {self.__nomenclature.unit_measurement.name_measurement}'
                                                              
     @property
     def nomenclature(self):

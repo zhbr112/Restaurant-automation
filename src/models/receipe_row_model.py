@@ -6,9 +6,13 @@ from src.argument_exception import arguent_exception
 
 # Номенклатура
 class receipe_row_model(abstract_reference):
+    # Объект номекулатуры
     __nomenclature:nomenclature_model=None
+    # Количество
     __size:int=0
+    # Единица измерения
     __unit:unit_measurement_model=None
+    # название ингредиента и единицы измерения
     __name_receipe=''
 
     def __init__(self,nomenclature:nomenclature_model=None, size:int=0, unit:unit_measurement_model=None):

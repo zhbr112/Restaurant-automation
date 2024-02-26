@@ -21,12 +21,18 @@ class receipe_model(abstract_reference):
     
     def __init__(self):
         super().__init__('receipe_model')
+        self._brutto: int = 0
+        self._netto: int = 0
+        self._rows = {}
+        self._instructions = list()
+        self._comments: str = ""
+
 
     def add(self, row: receipe_row_model):
         """
             Добавить состав блюда
         """
-        self._rows[row.name_receipe] = row
+        self._rows[row.nomenclature.full_name] = row
         self.__calc_brutto()
         
 
@@ -79,11 +85,9 @@ class receipe_model(abstract_reference):
             data (list): Список номенклатуры
         """
         
-        
         # Подготовим словарь со списком номенклатуры
         nomenclatures = data.list_positions
         receipt = receipe_model()
-        
         for position in items:
             # Получаем список кортежей и берем первое значение
             _list =  list(position.items())        

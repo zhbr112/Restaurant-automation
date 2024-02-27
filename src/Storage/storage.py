@@ -21,3 +21,7 @@ class storage:
     @staticmethod
     def group_key():
         return "group"
+    
+    @staticmethod
+    def receipt_key():
+        return "receipts"

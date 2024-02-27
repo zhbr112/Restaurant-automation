@@ -17,6 +17,7 @@ class test_factory(unittest.TestCase):
             print(item.full_name,item.unit_measurement.name_measurement)
 
         assert len(group.list_positions)>0
+        
 
     def test_check_factory_create_method(self):
         manager = settings_manager()
@@ -27,3 +28,49 @@ class test_factory(unittest.TestCase):
         assert factory.storage is not None
         assert factory.storage.data is not None
         print(factory.storage.data)
+
+    def test_check__factory_create_receipe(self):
+        assert start_factory.create_receipts()[0]._rows['Мука пшеничная'].size == 100
+
+    def test_check__factory_create_receipe_all(self):
+        items = [
+            {"Мука пшеничная": 100},
+            {"Сахар": 80},
+            {"Сливочное масло": 70},
+            {"Яйца": 1},
+            {"Ванилин": 5},
+        ]
+        for i in items:
+            assert start_factory.create_receipts()[0]._rows[list(i.items())[0][0]].nomenclature.full_name == list(i.items())[0][0]
+            assert start_factory.create_receipts()[0]._rows[list(i.items())[0][0]].size == list(i.items())[0][1]
+
+
+        items = [
+            {"Куриное филе": 200},
+            {"Салат Романо": 50},
+            {"Сыр Пармезан": 50},
+            {"Чеснок": 10},
+            {"Белый хлеб": 30},
+            {"Соль": 5},
+            {"Черный перец": 2},
+            {"Оливковое масло": 10},
+            {"Лимонный сок": 5},
+            {"Горчица дижонская": 5},
+            {"Яйца": 2},
+        ]
+        for i in items:
+            assert start_factory.create_receipts()[1]._rows[list(i.items())[0][0]].nomenclature.full_name == list(i.items())[0][0]
+            assert start_factory.create_receipts()[1]._rows[list(i.items())[0][0]].size == list(i.items())[0][1]
+
+
+        items = [
+            {"Яйца": 3},
+            {"Сахарная пудра": 180},
+            {"Ванилин": 5},
+            {"Корица": 5},
+            {"Какао": 20},
+        ]
+
+        for i in items:
+            assert start_factory.create_receipts()[2]._rows[list(i.items())[0][0]].nomenclature.full_name == list(i.items())[0][0]
+            assert start_factory.create_receipts()[2]._rows[list(i.items())[0][0]].size == list(i.items())[0][1]

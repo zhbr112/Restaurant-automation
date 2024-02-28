@@ -11,7 +11,7 @@ class unit_measurement_model(abstract_reference):
     __conversion_factor: int = None
     # Базовая единица измерения
     __basic_unit_measurement = None
-
+    
     # Инициализация объекта класса
     def __init__(
         self,

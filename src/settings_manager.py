@@ -22,6 +22,7 @@ class settings_manager:
     # Инициализация объекта класса
     def __init__(self):
         self.__id = uuid.uuid4()
+        self.open("config/settings.json")
 
     def open(self, file_name: str):
         """

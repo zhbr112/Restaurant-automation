@@ -85,7 +85,7 @@ class start_factory:
             unit15,
             unit16,
             unit17,
-            unit18,
+            unit18
         ]
         return group
 
@@ -190,14 +190,19 @@ class start_factory:
         if self.__storage == None:
             self.__storage = storage()
 
+        l=[]
+        self.__storage.data[storage.measurement_key()]=[]
+        for i in self.create_nomenclature().list_positions:
+            if i.unit_measurement.name_measurement not in l:
+                l.append(i.unit_measurement.name_measurement)
+                self.__storage.data[storage.measurement_key()].append(i.unit_measurement)
+
         self.__storage.data[storage.nomenculature_key()] = (
             self.create_nomenclature().list_positions
         )
-        self.__storage.data[storage.measurement_key()] = [
-            i.unit_measurement for i in self.create_nomenclature().list_positions
-        ]
+
         self.__storage.data[storage.group_key()] = self.create_nomenclature()
 
     @property
     def storage(self):
-        return self.__storage
+        return self.__storage    

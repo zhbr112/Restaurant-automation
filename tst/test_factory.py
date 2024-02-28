@@ -2,6 +2,8 @@ from src.models.unit_measurement_model import unit_measurement_model
 from src.Logics.start_factory import start_factory
 from src.settings import settings
 from src.settings_manager import settings_manager
+from src.Logics.report import report
+from src.Storage.storage import storage
 import unittest
 
 
@@ -74,3 +76,6 @@ class test_factory(unittest.TestCase):
         for i in items:
             assert start_factory.create_receipts()[2]._rows[list(i.items())[0][0]].nomenclature.full_name == list(i.items())[0][0]
             assert start_factory.create_receipts()[2]._rows[list(i.items())[0][0]].size == list(i.items())[0][1]
+
+    def test_check__(self):
+        report(storage.nomenculature_key())

@@ -48,12 +48,3 @@ class test_settings(unittest.TestCase):
             # Проверка
             assert getattr(manager.settings, key) == manager.data[key]
             print(getattr(manager.settings, key))
-
-    def test_(self):
-        q=settings_manager()
-        print(q.id)
-        print(q)
-
-        w=settings_manager() 
-        print(w.id)
-        print(w)

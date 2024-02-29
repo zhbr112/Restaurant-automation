@@ -79,3 +79,10 @@ class test_factory(unittest.TestCase):
 
     def test_check__(self):
         report(storage.nomenculature_key())
+        report(storage.measurement_key())
+        report(storage.group_key())
+        report(storage.settings_key())
+        # print(unit_measurement_model.create_gramm().id)
+        # print(unit_measurement_model.create_gramm().id)
+        # print(unit_measurement_model.create_killogramm().id)
+        # print(unit_measurement_model.create_killogramm().id)

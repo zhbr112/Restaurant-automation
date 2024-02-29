@@ -97,7 +97,10 @@ class receipe_model(abstract_reference):
             for i in nomenclatures:
                 if i.full_name==nomenclature_name:
                     nomenclature = i
-                    unit = i.unit_measurement.basic_unit_measurement   
+                    if i.unit_measurement.basic_unit_measurement is not None:
+                        unit = i.unit_measurement.basic_unit_measurement
+                    else:
+                        unit = i.unit_measurement
             
             # Создаем запись в рецепте
             row = receipe_row_model(nomenclature, size, unit)

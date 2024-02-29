@@ -1,6 +1,6 @@
-Name_model;Id;Name_measurement;Conversion_factor;Basic_unit_measurement
-unit_measurement_model;8bfe4b42-49e8-4c69-a19d-1d98f638e8b1;киллограмм;1000;4035132a-801e-43c4-901f-25ecacbb8f7c
-unit_measurement_model;64ed58ef-1490-4307-8b10-c10e3880541a;шт;1;64ed58ef-1490-4307-8b10-c10e3880541a
-unit_measurement_model;b7c011da-274b-40fc-8b01-c50e15cf435f;грамм;1;b7c011da-274b-40fc-8b01-c50e15cf435f
-unit_measurement_model;7d0b20da-6406-445a-8311-58c301441a00;литр;1000;0190506a-c7e1-4465-ac15-fe21acae83db
-unit_measurement_model;c993deaa-ce7f-494e-8970-1912269b7475;мл;1;c993deaa-ce7f-494e-8970-1912269b7475
+Id;Name measurement;Conversion factor;Basic unit measurement
+d8b2ee36-7f55-476c-9da0-5cc7ff14a105;шт;1;None
+26159b8c-2d91-486c-a296-ff46ad272e80;киллограмм;1000;146db1a0-4aee-47a5-946d-fbc3e1590cb1
+146db1a0-4aee-47a5-946d-fbc3e1590cb1;грамм;1;None
+7f78ae34-3e4e-4df1-b017-bb36b335fa8c;литр;1000;f503a90e-66d1-437b-aa9f-65579fa10386
+f503a90e-66d1-437b-aa9f-65579fa10386;мл;1;None

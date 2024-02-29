@@ -22,10 +22,9 @@ class unit_measurement_model(abstract_reference):
         super().__init__("unit_measurement_model")
         self.name_measurement = name_measurement
         self.conversion_factor = conversion_factor
-        self.__basic_unit_measurement=self
+        self.__basic_unit_measurement=basic_unit_measurement
         
-        if basic_unit_measurement is not None:
-            self.__basic_unit_measurement=basic_unit_measurement
+        
 
     @property
     def name_measurement(self):
@@ -63,29 +62,36 @@ class unit_measurement_model(abstract_reference):
     def basic_unit_measurement(self):
         return self.__basic_unit_measurement
     
-    @staticmethod
-    def create_gramm():
-        item=unit_measurement_model('грамм', 1, None)
-        return item
+    @classmethod
+    def create_gramm(cls):
+        if not hasattr(cls, "gramm"):
+            cls.gramm = unit_measurement_model('грамм', 1, None)
+        return cls.gramm
     
-    @staticmethod
-    def create_killogramm():
-        base=unit_measurement_model.create_gramm()
-        item=unit_measurement_model('киллограмм', 1000, base)
-        return item
+    @classmethod
+    def create_killogramm(cls):
+        if not hasattr(cls, "killogramm"):
+            base=unit_measurement_model.create_gramm()
+            cls.killogramm=unit_measurement_model('киллограмм', 1000, base)
+        return cls.killogramm
+
     
-    @staticmethod
-    def create_thing():
-        item=unit_measurement_model('шт', 1, None)
-        return item
+    @classmethod
+    def create_thing(cls):
+        if not hasattr(cls, "thing"):
+            cls.thing=unit_measurement_model('шт', 1, None)
+        return cls.thing
+
     
-    @staticmethod
-    def create_mililitr():
-        item=unit_measurement_model('мл', 1, None)
-        return item    
+    @classmethod
+    def create_mililitr(cls):
+        if not hasattr(cls, "mililitr"):
+            cls.mililitr=unit_measurement_model('мл', 1, None)
+        return cls.mililitr
     
-    @staticmethod
-    def create_litr():
-        base=unit_measurement_model.create_mililitr()
-        item=unit_measurement_model('литр', 1000, base)
-        return item
+    @classmethod
+    def create_litr(cls):
+        if not hasattr(cls, "litr"):
+            base=unit_measurement_model.create_mililitr()
+            cls.litr=unit_measurement_model('литр', 1000, base)
+        return cls.litr

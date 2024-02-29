@@ -189,19 +189,20 @@ class start_factory:
         """
         if self.__storage == None:
             self.__storage = storage()
+        if self.__settings == None:
+            self.__settings = settings_manager().settings
 
-        l=[]
-        self.__storage.data[storage.measurement_key()]=[]
-        for i in self.create_nomenclature().list_positions:
-            if i.unit_measurement.name_measurement not in l:
-                l.append(i.unit_measurement.name_measurement)
-                self.__storage.data[storage.measurement_key()].append(i.unit_measurement)
-
-        self.__storage.data[storage.nomenculature_key()] = (
-            self.create_nomenclature().list_positions
-        )
-
-        self.__storage.data[storage.group_key()] = self.create_nomenclature()
+        # l=[]
+        # self.__storage.data[storage.measurement_key()]=[]
+        # for i in self.create_nomenclature().list_positions:
+        #     if i.unit_measurement.name_measurement not in l:
+        #         l.append(i.unit_measurement.name_measurement)
+        #         self.__storage.data[storage.measurement_key()].append(i.unit_measurement)
+        nomenclatures=self.create_nomenclature()
+        self.__storage.data[storage.nomenculature_key()] = (nomenclatures.list_positions)
+        self.__storage.data[storage.measurement_key()]=list(set([nomenclature.unit_measurement for nomenclature in nomenclatures.list_positions]))
+        self.__storage.data[storage.group_key()] = [nomenclatures]
+        self.__storage.data[storage.settings_key()] = [self.__settings]
 
     @property
     def storage(self):

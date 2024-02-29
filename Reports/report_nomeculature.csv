@@ -1,19 +1,19 @@
-Name_model;Id;Full_name;Unit_measurement
-nomenclature_model;b22cb38c-5345-47b1-b6bb-ca5480d9bfd9;Мука пшеничная;aff47e44-7a28-44f9-9548-c70e60ac458e
-nomenclature_model;008a824c-fcb4-4d09-8ba1-c8520461df28;Сахар;7b9f3be3-f6cb-4ca4-9871-c57c9c192a13
-nomenclature_model;01c9bb32-b2d7-46da-aae7-78eabd3feac6;Сливочное масло;61fb6159-bbce-4288-95d4-74784bb2baeb
-nomenclature_model;ffc97f75-3c93-4314-b0ba-24baf28b2a64;Яйца;3f7827bd-9649-442f-a458-616629154f4e
-nomenclature_model;e396fe1e-ff1a-4a5a-a681-64fe913f4c64;Ванилин;7060c786-4c26-41f1-985f-0d1138c800c7
-nomenclature_model;7dbf1fec-ef2f-4c4d-a978-e2df1c56991f;Куриное филе;7552cff7-0963-4e8c-ad28-b1629a4d6060
-nomenclature_model;59939d74-c4b7-474e-84b0-e2c8496fd72c;Салат Романо;3649e433-bd01-451b-afae-f532bde35ae9
-nomenclature_model;b142b4d0-9622-49b9-bd9e-318d10f99017;Сыр Пармезан;552562ad-27c1-44a0-8eba-bfea63eb4d98
-nomenclature_model;3603264f-0feb-45c6-beb0-ba19a362c905;Чеснок;e7a06263-1e25-49d4-a5bf-eae2b58d53bf
-nomenclature_model;9978170b-319c-4195-8a2b-342b008c8b8e;Белый хлеб;d81ca744-35d7-4bc9-ae30-8d52abd95683
-nomenclature_model;4ca06deb-abe8-4dce-a130-0137e3ceb297;Соль;64d86691-29ab-4926-a89b-97919c16ddb3
-nomenclature_model;48bc8444-3955-4cfb-b408-4b61f97d67a5;Черный перец;f0dcd053-7867-4030-bc84-5c43c4aae496
-nomenclature_model;ec723c12-efba-424c-aa0f-9ac0dcef13d2;Оливковое масло;e802d763-1c2d-455c-bb0f-9029ff5af5ae
-nomenclature_model;0abd4e21-fd8c-40d8-8223-dbc8d94a0370;Лимонный сок;e2ee6c39-4455-4028-851e-d7b2bda28584
-nomenclature_model;edb2bfbc-a142-4726-8c37-59c59453c28a;Горчица дижонская;58f637db-c2e0-4d76-b876-9c025a7d9002
-nomenclature_model;b18cab86-53ac-40fb-aada-f968a78f5a99;Сахарная пудра;c0625bdf-91f5-4abf-a0f4-6b198612131c
-nomenclature_model;cbf856c4-51e7-4c3b-85e5-580fa449b1b0;Корица;88ae0009-96c1-4513-8e66-25ae53e573e1
-nomenclature_model;6ea45b97-70f3-481c-ac7e-5d7c20b30cfc;Какао;c2e7628c-a797-41d0-afc9-dd8236fabe06
+Id;Full name;Unit measurement
+7d19fbe3-bde0-439e-b0bd-1649e558522f;Мука пшеничная;26159b8c-2d91-486c-a296-ff46ad272e80
+9916a9fd-8e09-41a7-80fc-f211c841dde7;Сахар;26159b8c-2d91-486c-a296-ff46ad272e80
+25b0fd0b-e9b9-4abe-bf3e-1cee30414787;Сливочное масло;26159b8c-2d91-486c-a296-ff46ad272e80
+107fbf10-9ef3-46f2-a26b-e3a56a23624d;Яйца;d8b2ee36-7f55-476c-9da0-5cc7ff14a105
+093263a0-cdc4-4d9f-ad6c-3f4032fc2470;Ванилин;146db1a0-4aee-47a5-946d-fbc3e1590cb1
+88c3f887-842e-4d26-869a-9a3b63f93bfd;Куриное филе;26159b8c-2d91-486c-a296-ff46ad272e80
+b2df7cb6-0c22-4182-aa0e-ed8dc05b58e6;Салат Романо;26159b8c-2d91-486c-a296-ff46ad272e80
+55fb57d7-f1db-4f3b-b4cf-20a46f39a356;Сыр Пармезан;26159b8c-2d91-486c-a296-ff46ad272e80
+432d1200-5b59-4239-bdfc-a6879dbc7799;Чеснок;d8b2ee36-7f55-476c-9da0-5cc7ff14a105
+4a142203-867d-48a3-9dd3-1cdbb0518774;Белый хлеб;146db1a0-4aee-47a5-946d-fbc3e1590cb1
+b13d262d-ed75-4634-86f7-cf6c5e5dd8df;Соль;26159b8c-2d91-486c-a296-ff46ad272e80
+27900d90-4f1a-4513-9276-854b337f376f;Черный перец;146db1a0-4aee-47a5-946d-fbc3e1590cb1
+8f152801-1c97-41c4-9c5b-c04a985f40b2;Оливковое масло;7f78ae34-3e4e-4df1-b017-bb36b335fa8c
+5483177f-c682-41c6-9b7c-5120f3176277;Лимонный сок;f503a90e-66d1-437b-aa9f-65579fa10386
+7e4a4b2e-9770-4b54-a2ce-db469b4db9aa;Горчица дижонская;26159b8c-2d91-486c-a296-ff46ad272e80
+efd946c4-37ad-480b-8903-7d513a41439a;Сахарная пудра;26159b8c-2d91-486c-a296-ff46ad272e80
+5f1ffac2-4635-4ca4-bc46-9b5285e6a81e;Корица;146db1a0-4aee-47a5-946d-fbc3e1590cb1
+b98d6196-c1a3-4ba8-8184-acb09bcf6d5c;Какао;146db1a0-4aee-47a5-946d-fbc3e1590cb1

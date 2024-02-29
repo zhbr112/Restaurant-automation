@@ -11,7 +11,7 @@ class settings_manager:
     # Объект настроект
     __settings = settings()
     # Уникальный номер
-    __id: uuid.UUID
+    __id: uuid.UUID=uuid.uuid4()
 
     # Если инстанс существует возращаем его, если нет то создаем. (singleton)
     def __new__(cls):
@@ -21,7 +21,6 @@ class settings_manager:
 
     # Инициализация объекта класса
     def __init__(self):
-        self.__id = uuid.uuid4()
         self.open("config/settings.json")
 
     def open(self, file_name: str):
@@ -102,3 +101,7 @@ class settings_manager:
     @property
     def data(self):
         return self.__data
+    
+    @property
+    def id(self):
+        return self.__id

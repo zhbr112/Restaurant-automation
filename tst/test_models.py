@@ -55,7 +55,7 @@ class test_models(unittest.TestCase):
             nomenclature2 = nomenclature_model("1dsfddfdsdsssssssssssssssssssf")
 
             # Действие
-            print(unit_measurement2.basic_unit_measurement.basic_unit_measurement.name_measurement)
+            print(unit_measurement2.basic_unit_measurement.name_measurement)
 
             # Проверка
             assert True

@@ -30,6 +30,8 @@ class test_settings(unittest.TestCase):
         manager2 = settings_manager()
 
         # Действие
+        print(manager1.id)
+        print(manager2.id)
 
         # Проверка
         assert manager1 is manager2
@@ -46,3 +48,12 @@ class test_settings(unittest.TestCase):
             # Проверка
             assert getattr(manager.settings, key) == manager.data[key]
             print(getattr(manager.settings, key))
+
+    def test_(self):
+        q=settings_manager()
+        print(q.id)
+        print(q)
+
+        w=settings_manager() 
+        print(w.id)
+        print(w)

@@ -78,6 +78,7 @@ class test_factory(unittest.TestCase):
 
     def test_check_report_csv(self):
         report_csv_=report_csv(settings_manager().settings)
+        print(report_csv_.create(storage.group_key()))
         assert report_csv_.create(storage.group_key())!=''
         assert report_csv_.create(storage.measurement_key())!=''
         assert report_csv_.create(storage.nomenculature_key())!=''

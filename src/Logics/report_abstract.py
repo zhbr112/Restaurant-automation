@@ -8,7 +8,7 @@ class report_abstract:
     def __init__(self, settings):
         self.__settings=settings
 
-    def create(self,data)->str:
+    def create(self,key)->str:
         pass
 
     @property

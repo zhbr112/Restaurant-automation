@@ -1,17 +1,19 @@
 from src.Logics.report_abstract import report_abstract
 from src.Logics.start_factory import start_factory
-from typing import Iterator
+from src.argument_exception import arguent_exception
 
 
 class report_csv(report_abstract):
-    __str_csv:str = ""
+    __str_csv: str = ""
 
-    def create(self, data:str):
+    def create(self, key: str):
         """
-            Создание строки типа csv, с данными из storage
+        Создание строки типа csv, с данными из storage
         """
         storage = start_factory().storage
-        self.data = storage.data[data]
+        self.data = storage.data.get(key)
+        if self.data is None:
+            raise arguent_exception("Таких данных несуществует")
 
         # Получение название столбцов
         names = (
@@ -26,21 +28,22 @@ class report_csv(report_abstract):
         self.str_csv += names
 
         # Формирование строки csv
-        for line in self.data:
-            lines = []
-
-            for unit in vars(line).values():
+        lines = [[] for line in self.data]
+        for num_l, line in enumerate(self.data):
+            for num_u, unit in enumerate(vars(line).values()):
                 if "src." in str(type(unit)):
-                    lines.append(str(unit.id))
+                    lines[num_l].append(str(unit.id))
                     continue
 
-                if isinstance(unit, Iterator):
-                    for unit_in_list_unit in unit:
-                        lines.append(str(unit_in_list_unit.id))
+                if isinstance(unit, list):
+                    lines[num_l].append(
+                        ",".join(
+                            [str(unit_in_list_unit.id) for unit_in_list_unit in unit]
+                        )
+                    )
                     continue
-
-                lines.append(str(unit))
-            self.str_csv += ";".join(lines) + "\n"
+                lines[num_l].append(str(unit))
+            self.str_csv += ";".join(lines[num_l]) + "\n"
         return self.str_csv
 
     @property

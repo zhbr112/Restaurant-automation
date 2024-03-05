@@ -10,8 +10,7 @@ class report_csv(report_abstract):
         """
         Создание строки типа csv, с данными из storage
         """
-        storage = start_factory().storage
-        self.data = storage.data.get(key)
+        self.data = self.sdata.get(key)
         if self.data is None:
             raise arguent_exception("Таких данных несуществует")
 
@@ -28,22 +27,20 @@ class report_csv(report_abstract):
         self.str_csv += names
 
         # Формирование строки csv
-        lines = [[] for line in self.data]
         for num_l, line in enumerate(self.data):
             for num_u, unit in enumerate(vars(line).values()):
                 if "src." in str(type(unit)):
-                    lines[num_l].append(str(unit.id))
+                    self.str_csv+=str(unit.id)+';'
                     continue
 
                 if isinstance(unit, list):
-                    lines[num_l].append(
-                        ",".join(
-                            [str(unit_in_list_unit.id) for unit_in_list_unit in unit]
-                        )
-                    )
+                    self.str_csv+=",".join([str(unit_in_list_unit.id) for unit_in_list_unit in unit])+';'
                     continue
-                lines[num_l].append(str(unit))
-            self.str_csv += ";".join(lines[num_l]) + "\n"
+                
+                self.str_csv+=str(unit)+';'
+            
+            self.str_csv = self.str_csv[:-1] + "\n"
+            
         return self.str_csv
 
     @property

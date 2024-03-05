@@ -196,7 +196,6 @@ class start_factory:
         self.__storage.data[storage.nomenculature_key()] = (nomenclatures.list_positions)
         self.__storage.data[storage.measurement_key()]=list(set([nomenclature.unit_measurement for nomenclature in nomenclatures.list_positions]))
         self.__storage.data[storage.group_key()] = [nomenclatures]
-        self.__storage.data[storage.settings_key()] = [self.__settings]
 
     @property
     def storage(self):

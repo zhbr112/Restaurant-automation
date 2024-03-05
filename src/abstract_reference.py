@@ -53,3 +53,5 @@ class abstract_reference:
         """
         self._validate(value, str, 50)
         self.__name_model = value
+
+    

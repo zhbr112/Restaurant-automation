@@ -1,7 +1,8 @@
 from src.models.unit_measurement_model import unit_measurement_model
 from src.Logics.start_factory import start_factory
-from src.settings import settings
 from src.settings_manager import settings_manager
+from src.Logics.report_csv import report_csv
+from src.Storage.storage import storage
 import unittest
 
 
@@ -74,3 +75,11 @@ class test_factory(unittest.TestCase):
         for i in items:
             assert start_factory.create_receipts()[2]._rows[list(i.items())[0][0]].nomenclature.full_name == list(i.items())[0][0]
             assert start_factory.create_receipts()[2]._rows[list(i.items())[0][0]].size == list(i.items())[0][1]
+
+    def test_check_report_csv(self):
+        report_csv_=report_csv(settings_manager().settings)
+        print(report_csv_.create(storage.group_key()))
+        assert report_csv_.create(storage.group_key())!=''
+        assert report_csv_.create(storage.measurement_key())!=''
+        assert report_csv_.create(storage.nomenculature_key())!=''
+        assert report_csv_.create(storage.settings_key())!=''

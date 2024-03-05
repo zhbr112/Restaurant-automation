@@ -4,14 +4,15 @@ from src.argument_exception import arguent_exception
 
 class abstract_reference:
     # Уникальный номер
-    __id: uuid.UUID
+    __id: uuid.UUID=None
     # Имя модели
     __name_model: str = ""
 
     # Инициализация объекта класса
     def __init__(self, name: str = None) -> None:
-        self.name_model = name
-        self.__id = uuid.uuid4()
+        name_model = name
+        if self.id is None:
+            self.__id=uuid.uuid4()
 
     def _validate(self, value, type_, len_=None):
         """

@@ -85,7 +85,7 @@ class start_factory:
             unit15,
             unit16,
             unit17,
-            unit18,
+            unit18
         ]
         return group
 
@@ -189,15 +189,15 @@ class start_factory:
         """
         if self.__storage == None:
             self.__storage = storage()
+        if self.__settings == None:
+            self.__settings = settings_manager().settings
 
-        self.__storage.data[storage.nomenculature_key()] = (
-            self.create_nomenclature().list_positions
-        )
-        self.__storage.data[storage.measurement_key()] = [
-            i.unit_measurement for i in self.create_nomenclature().list_positions
-        ]
-        self.__storage.data[storage.group_key()] = self.create_nomenclature()
+        nomenclatures=self.create_nomenclature()
+        self.__storage.data[storage.nomenculature_key()] = (nomenclatures.list_positions)
+        self.__storage.data[storage.measurement_key()]=list(set([nomenclature.unit_measurement for nomenclature in nomenclatures.list_positions]))
+        self.__storage.data[storage.group_key()] = [nomenclatures]
+        self.__storage.data[storage.settings_key()] = [self.__settings]
 
     @property
     def storage(self):
-        return self.__storage
+        return self.__storage    

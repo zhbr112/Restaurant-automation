@@ -6,5 +6,6 @@
     "score":13678542890, 
     "type_ownership":"OOOOO",
     "sdsd":"22323",
-    "is_first_start":true
+    "is_first_start":true,
+    "report_form_types":"CSV"
 }

@@ -30,6 +30,8 @@ class test_settings(unittest.TestCase):
         manager2 = settings_manager()
 
         # Действие
+        print(manager1.id)
+        print(manager2.id)
 
         # Проверка
         assert manager1 is manager2
@@ -39,10 +41,10 @@ class test_settings(unittest.TestCase):
         manager = settings_manager()
 
         # Действие
-        manager.open("config/settings.json")
         for key in manager.data.keys():
             if not hasattr(manager.settings, key):
                 continue
 
             # Проверка
             assert getattr(manager.settings, key) == manager.data[key]
+            print(getattr(manager.settings, key))

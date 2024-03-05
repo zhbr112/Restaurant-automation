@@ -16,6 +16,7 @@ class settings:
     # Вид собственности
     __type_ownership = ""
     __first_start=True
+    __report_form_types=None
 
     def __validate(self, value, type_=None, len_: int = None) -> bool:
         """
@@ -163,3 +164,11 @@ class settings:
     @is_first_start.setter
     def is_first_start(self,value):
         self.__first_start=value
+
+    @property
+    def report_form_types(self):
+        return self.__report_form_types
+
+    @report_form_types.setter
+    def report_form_types(self, value: int):
+        self.__report_form_types = value

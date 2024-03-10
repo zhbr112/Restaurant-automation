@@ -1,5 +1,6 @@
 from src.Logics.report_abstract import report_abstract
 from src.Logics.report_csv import report_csv
+from src.Logics.report_markdown import report_mardown
 
 class report_factory:
     __maps={}
@@ -9,7 +10,8 @@ class report_factory:
         self.__build_structure()
 
     def __build_structure(self):
-        self.__maps['CSV']=report_csv 
+        self.__maps['CSV']=report_csv
+        self.__maps['markdown']=report_mardown 
 
     def create(self,settings, format, data):
         report_type =self.__maps[format]

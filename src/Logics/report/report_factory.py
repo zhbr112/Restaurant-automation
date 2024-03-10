@@ -1,9 +1,9 @@
 from src.Logics.report.report_abstract import report_abstract
 from src.Logics.report.report_csv import report_csv
+from src.Logics.report.report_markdown import report_mardown
 
 class report_factory:
     __maps={}
-    __data=None
 
     def __init__(self):
         self.__build_structure()

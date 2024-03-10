@@ -1,15 +1,17 @@
-from src.Logics.report_abstract import report_abstract
+from src.Logics.report.report_abstract import report_abstract
 from src.Logics.start_factory import start_factory
 from src.argument_exception import arguent_exception
+import json
 
 
-class report_mardown(report_abstract):
+class report_json(report_abstract):
     __str_csv: str = ""
 
     def create(self, key: str):
         """
         Создание строки типа csv, с данными из storage
         """
+        self.__str_csv= ""
         self.data = self.sdata.get(key)
         if self.data is None:
             raise arguent_exception("Таких данных несуществует")
@@ -40,19 +42,12 @@ class report_mardown(report_abstract):
                 self.str_csv+=str(unit)+';'
             
             self.str_csv = self.str_csv[:-1] + "\n"
-        s=self.str_csv.split('\n')
-        
-        v=[]
-        v.append(s[0])
-        v.append(';'.join(['-' for _ in s[0].split(';')]))
-        v+=s[1:]
-        q=[]
-        for i in v:
-            q.append('|'+'|'.join(i.split(';'))+'|\n')
-        
-        
-        q.pop()
-        return q
+        q=list(self.str_csv)
+        with open('test.json', 'w') as f:
+            w=json.dump(q,f)
+        with open('test.json', 'r') as f:
+            w=json.load(f)
+        return self.str_csv
 
     @property
     def str_csv(self):

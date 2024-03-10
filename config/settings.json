@@ -7,5 +7,5 @@
     "type_ownership":"OOOOO",
     "sdsd":"22323",
     "is_first_start":true,
-    "report_form_types":"CSV"
+    "report_form_types":"json"
 }

@@ -3,8 +3,6 @@ from src.argument_exception import arguent_exception
 from src.settings import settings
 import unittest
 
-# Действие
-
 
 class test_error(unittest.TestCase):
     def test_check_set_error_text(self):

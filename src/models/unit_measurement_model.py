@@ -1,6 +1,7 @@
 from src.abstract_reference import abstract_reference
 from src.argument_exception import arguent_exception
 from src.error_proxy import error_proxy
+from datetime import datetime
 
 
 # Единица измерения
@@ -12,6 +13,7 @@ class unit_measurement_model(abstract_reference):
     # Базовая единица измерения
     __basic_unit_measurement = None
     
+    __date_time=None
     # Инициализация объекта класса
     def __init__(
         self,
@@ -23,6 +25,7 @@ class unit_measurement_model(abstract_reference):
         self.name_measurement = name_measurement
         self.conversion_factor = conversion_factor
         self.__basic_unit_measurement=basic_unit_measurement
+        self.date_time=datetime.now()
         
         
 
@@ -40,6 +43,14 @@ class unit_measurement_model(abstract_reference):
 
         self._validate(value, str)
         self.__name_measurement = value
+
+    @property
+    def date_time(self):
+        return self.__date_time
+
+    @date_time.setter
+    def date_time(self, value: str):
+        self.__date_time = value
 
     @property
     def conversion_factor(self):

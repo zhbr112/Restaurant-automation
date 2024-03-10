@@ -25,7 +25,3 @@ class storage:
     @staticmethod
     def receipt_key():
         return "receipts"
-    
-    @staticmethod
-    def settings_key():
-        return "settings"

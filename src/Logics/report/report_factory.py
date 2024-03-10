@@ -1,5 +1,5 @@
-from src.Logics.report_abstract import report_abstract
-from src.Logics.report_csv import report_csv
+from src.Logics.report.report_abstract import report_abstract
+from src.Logics.report.report_csv import report_csv
 
 class report_factory:
     __maps={}

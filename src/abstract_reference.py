@@ -10,7 +10,7 @@ class abstract_reference:
 
     # Инициализация объекта класса
     def __init__(self, name: str = None) -> None:
-        name_model = name
+        self.__name_model = name
         if self.id is None:
             self.__id=uuid.uuid4()
 
@@ -39,19 +39,5 @@ class abstract_reference:
     @property
     def id(self):
         return self.__id
-
-    @property
-    def name_model(self):
-        return self.__name_model
-
-    @name_model.setter
-    def name_model(self, value: str):
-        """
-            Имя модели
-        Args:
-            value (str): Имя модели, не более 50 символов
-        """
-        self._validate(value, str, 50)
-        self.__name_model = value
 
     

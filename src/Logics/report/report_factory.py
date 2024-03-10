@@ -9,7 +9,8 @@ class report_factory:
         self.__build_structure()
 
     def __build_structure(self):
-        self.__maps['CSV']=report_csv 
+        self.__maps['CSV']=report_csv
+        self.__maps['markdown']=report_mardown 
 
     def create(self,settings, format, data):
         report_type =self.__maps[format]

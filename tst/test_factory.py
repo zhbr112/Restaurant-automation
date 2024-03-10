@@ -3,6 +3,8 @@ from src.Logics.start_factory import start_factory
 from src.settings_manager import settings_manager
 from src.Logics.report.report_csv import report_csv
 from src.Logics.report.report_factory import report_factory
+from src.Logics.report_json import report_json
+from src.Logics.report_markdown import report_mardown
 from src.Storage.storage import storage
 import unittest
 
@@ -80,7 +82,7 @@ class test_factory(unittest.TestCase):
     def test_check_report_csv(self):
         data = start_factory().storage.data
         settings=settings_manager().settings
-        report_csv_=report_csv(settings,data)
+        report_csv_=report_json(settings,data)
         print(report_csv_.create(storage.measurement_key()))
         print(report_csv_.create(storage.group_key()))
         print(report_csv_.create(storage.nomenculature_key()))
@@ -93,7 +95,6 @@ class test_factory(unittest.TestCase):
         data = start_factory().storage.data
         report=report_factory()
         format="CSV"
-        q=report.create(settings,format,data)
-        print(q.create(storage.measurement_key()))
+        print(report.create(settings,format,data).create(storage.measurement_key()))
 
 

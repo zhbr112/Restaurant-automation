@@ -17,5 +17,5 @@ class report_json(report_abstract):
         for obj in self.data:
             result.append(convert.convert_obj(obj))
 
-        rep_json=json.dumps(result)
+        rep_json=json.dumps(result,sort_keys = True, indent = 4)
         return(str(rep_json))

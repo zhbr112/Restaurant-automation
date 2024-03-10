@@ -6,6 +6,7 @@ from src.Logics.start_factory import start_factory
 
 app = Flask(__name__)
 
+
 @app.route("/api/report/<storage_key>", methods=["GET"])
 def get_report(storage_key: str):
     data = start_factory().storage.data
@@ -14,14 +15,21 @@ def get_report(storage_key: str):
         report = report_factory()
         format = settings.report_form_types
         report.create(settings, format, data).create(storage_key)
-        response_type = app.response_class(
-            response=report.create(settings, format, data).create(storage_key),
-            status=200,
-            mimetype="application/text"
-        )
+        if settings.report_form_types == "json":
+            response_type = app.response_class(
+                response=report.create(settings, format, data).create(storage_key),
+                status=200,
+                mimetype="application/json",
+            )
+        else:
+            response_type = app.response_class(
+                response=report.create(settings, format, data).create(storage_key),
+                status=200,
+                mimetype="application/text",
+            )
     else:
         response_type = app.response_class(
-            status=500
+            response="Внутреняя ошибка сервера", status=500
         )
 
     return response_type

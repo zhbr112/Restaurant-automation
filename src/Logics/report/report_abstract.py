@@ -1,7 +1,7 @@
 from src.Logics.start_factory import start_factory
+from abc import ABC, abstractmethod
 
-
-class report_abstract:
+class report_abstract(ABC):
     __settings = None
     __sdata=None
 
@@ -9,20 +9,9 @@ class report_abstract:
         self.__settings=settings
         self.sdata=sdata
 
+    @abstractmethod
     def create(self,key)->str:
         pass
-
-    def create_str(self,key)->str:
-        str_=''
-        str_+=(
-            ";".join(
-                [
-                    unit.split("__")[1].capitalize().replace("_", " ")
-                    for unit in vars(self.data[0])
-                ]
-            )
-            + "|"
-        )
         
     @property
     def settings(self):

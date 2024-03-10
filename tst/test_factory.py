@@ -82,7 +82,7 @@ class test_factory(unittest.TestCase):
     def test_check_report_csv(self):
         data = start_factory().storage.data
         settings=settings_manager().settings
-        report_csv_=report_mardown(settings,data)
+        report_csv_=report_json(settings,data)
         print(report_csv_.create(storage.measurement_key()))
         print(report_csv_.create(storage.group_key()))
         print(report_csv_.create(storage.nomenculature_key()))

@@ -1,8 +1,9 @@
 import uuid
 from src.argument_exception import arguent_exception
+from abc import ABC, abstractmethod
 
 
-class abstract_reference:
+class abstract_reference(ABC):
     # Уникальный номер
     __id: uuid.UUID=None
     # Имя модели

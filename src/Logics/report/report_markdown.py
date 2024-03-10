@@ -31,6 +31,8 @@ class report_mardown(report_abstract):
         # Формирование строки md
         for num_l, line in enumerate(self.data):
             for num_u, unit in enumerate(vars(line).values()):
+                if len(unit.split("__"))==1:
+                    continue
                 if "src." in str(type(unit)):
                     self.str_md+='|'+str(unit.id)
                     continue

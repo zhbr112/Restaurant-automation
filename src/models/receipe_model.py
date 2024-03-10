@@ -5,73 +5,73 @@ from src.models.receipe_row_model import receipe_row_model
 
 class receipe_model(abstract_reference):
     # Вес брутто
-    _brutto: int = 0
+    __brutto: int = 0
     
     # Вес нетто
-    _netto: int = 0
+    __netto: int = 0
 
     # Состав рецепта
-    _rows = {}
+    __rows = {}
     
     # Инструкции
-    _instructions = list()
+    __instructions = list()
     
     # Описание
-    _comments: str = ""
+    __comments: str = ""
     
     def __init__(self):
         super().__init__('receipe_model')
-        self._brutto: int = 0
-        self._netto: int = 0
-        self._rows = {}
-        self._instructions = list()
-        self._comments: str = ""
+        self.__brutto: int = 0
+        self.__netto: int = 0
+        self.__rows = {}
+        self.__instructions = list()
+        self.__comments: str = ""
 
 
     def add(self, row: receipe_row_model):
         """
             Добавить состав блюда
         """
-        self._rows[row.nomenclature.full_name] = row
-        self.__calc_brutto()
+        self.__rows[row.nomenclature.full_name] = row
+        self.__calc__brutto()
         
 
-    def __calc_brutto(self):
+    def __calc__brutto(self):
         """
             Перерасчет брутто
         """
-        self._brutto = 0
-        for position  in self._rows:
-            self._brutto += self._rows[position].size 
+        self.__brutto = 0
+        for position  in self.__rows:
+            self.__brutto += self.__rows[position].size 
             
     @property         
     def netto(self):
-        return self._netto                        
+        return self.__netto                        
         
     @netto.setter
     def netto(self, value: int):
         """
             Вес нетто
         """
-        self._netto = value
+        self.__netto = value
         
     @property    
     def instructions(self):
         """
            Инструкция для приготовления
         """
-        return self._instructions  
+        return self.__instructions  
     
     @property
     def comments(self):
-        return self._comments
+        return self.__comments
     
     @comments.setter
     def comments(self, value: str):
         """
             Описание блюда
         """
-        self._comments = value   
+        self.__comments = value   
     
     
     @staticmethod
@@ -107,3 +107,11 @@ class receipe_model(abstract_reference):
             receipt.add(row)
         
         return receipt
+    
+    @property
+    def rows(self):
+        return self.__rows
+    
+    @property         
+    def brutto(self):
+        return self.__brutto

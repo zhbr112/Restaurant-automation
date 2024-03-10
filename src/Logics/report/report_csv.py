@@ -30,6 +30,8 @@ class report_csv(report_abstract):
         # Формирование строки csv
         for num_l, line in enumerate(self.data):
             for num_u, unit in enumerate(vars(line)):
+                if len(unit.split("__"))==1:
+                    continue
                 if hasattr(line,unit.split("__")[1]):
                     unit=getattr(line,unit.split("__")[1])
                     if "src." in str(type(unit)):

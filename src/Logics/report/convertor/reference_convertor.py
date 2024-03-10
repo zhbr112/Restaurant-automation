@@ -3,6 +3,7 @@ from src.Logics.report.convertor.datetime_convertor import datetime_convertor
 import uuid
 from datetime import datetime
 
+
 class reference_convertor(convertor_abstrakt):
 
     @classmethod
@@ -10,9 +11,11 @@ class reference_convertor(convertor_abstrakt):
         result = {}
         if isinstance(obj,(str,int,uuid.UUID)) or obj is None:
                     return obj
+        
         for key in vars(obj):
             if len(key.split("__"))==1:
                 continue
+            
             key=key.split("__")[1]
             if hasattr(obj, key):
                 unit=getattr(obj, key)

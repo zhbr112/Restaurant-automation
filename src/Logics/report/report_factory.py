@@ -2,6 +2,7 @@ from src.Logics.report.report_csv import report_csv
 from src.Logics.report.report_markdown import report_mardown
 from src.Logics.report.report_json import report_json
 
+
 class report_factory:
     __maps={}
 

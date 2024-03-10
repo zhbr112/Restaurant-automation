@@ -1,6 +1,6 @@
 import uuid
 from src.argument_exception import arguent_exception
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class abstract_reference(ABC):
@@ -40,5 +40,3 @@ class abstract_reference(ABC):
     @property
     def id(self):
         return self.__id
-
-    

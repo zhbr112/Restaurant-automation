@@ -3,8 +3,8 @@ from src.settings_manager import settings_manager
 from src.Logics.report.report_factory import report_factory
 from src.Logics.start_factory import start_factory
 
-app = Flask(__name__)
 
+app = Flask(__name__)
 
 @app.route("/api/report/<storage_key>", methods=["GET"])
 def get_report(storage_key: str):

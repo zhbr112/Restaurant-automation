@@ -2,7 +2,6 @@ from src.abstract_reference import abstract_reference
 from src.models.receipe_row_model import receipe_row_model
 
 
-
 class receipe_model(abstract_reference):
     # Вес брутто
     __brutto: int = 0
@@ -25,55 +24,8 @@ class receipe_model(abstract_reference):
         self.__netto: int = 0
         self.__rows = {}
         self.__instructions = list()
-        self.__comments: str = ""
-
-
-    def add(self, row: receipe_row_model):
-        """
-            Добавить состав блюда
-        """
-        self.__rows[row.nomenclature.full_name] = row
-        self.__calc__brutto()
-        
-
-    def __calc__brutto(self):
-        """
-            Перерасчет брутто
-        """
-        self.__brutto = 0
-        for position  in self.__rows:
-            self.__brutto += self.__rows[position].size 
-            
-    @property         
-    def netto(self):
-        return self.__netto                        
-        
-    @netto.setter
-    def netto(self, value: int):
-        """
-            Вес нетто
-        """
-        self.__netto = value
-        
-    @property    
-    def instructions(self):
-        """
-           Инструкция для приготовления
-        """
-        return self.__instructions  
-    
-    @property
-    def comments(self):
-        return self.__comments
-    
-    @comments.setter
-    def comments(self, value: str):
-        """
-            Описание блюда
-        """
-        self.__comments = value   
-    
-    
+        self.__comments: str = ""            
+       
     @staticmethod
     def create_receipt(comments: str, items: list, data):
         """
@@ -108,6 +60,22 @@ class receipe_model(abstract_reference):
         
         return receipt
     
+    def add(self, row: receipe_row_model):
+        """
+            Добавить состав блюда
+        """
+        self.__rows[row.nomenclature.full_name] = row
+        self.__calc__brutto()
+        
+
+    def __calc__brutto(self):
+        """
+            Перерасчет брутто
+        """
+        self.__brutto = 0
+        for position  in self.__rows:
+            self.__brutto += self.__rows[position].size   
+    
     @property
     def rows(self):
         return self.__rows
@@ -115,3 +83,32 @@ class receipe_model(abstract_reference):
     @property         
     def brutto(self):
         return self.__brutto
+    
+    @property         
+    def netto(self):
+        return self.__netto                        
+        
+    @netto.setter
+    def netto(self, value: int):
+        """
+            Вес нетто
+        """
+        self.__netto = value
+        
+    @property    
+    def instructions(self):
+        """
+           Инструкция для приготовления
+        """
+        return self.__instructions  
+    
+    @property
+    def comments(self):
+        return self.__comments
+    
+    @comments.setter
+    def comments(self, value: str):
+        """
+            Описание блюда
+        """
+        self.__comments = value

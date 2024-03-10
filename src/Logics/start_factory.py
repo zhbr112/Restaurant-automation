@@ -172,30 +172,18 @@ class start_factory:
         result.append(item)
         return result
 
-    def create(self):
-        """
-            Создание номекулатуры
-        """
-        if self.__settings.is_first_start == True:
-            self.__settings.is_first_start = False
-            return start_factory.create_nomenclature()
-        else:
-            group = group_nomenclature_model.create_group()
-            return group
-
     def __build(self):
         """
             Внесение данных в хранилище
         """
-        if self.__storage == None:
-            self.__storage = storage()
-        if self.__settings == None:
-            self.__settings = settings_manager().settings
+        self.__storage = storage()
+        self.__settings = settings_manager().settings
 
         nomenclatures=self.create_nomenclature()
         self.__storage.data[storage.nomenculature_key()] = (nomenclatures.list_positions)
         self.__storage.data[storage.measurement_key()]=list(set([nomenclature.unit_measurement for nomenclature in nomenclatures.list_positions]))
         self.__storage.data[storage.group_key()] = [nomenclatures]
+        self.__storage.data[storage.receipt_key()] = start_factory.create_receipts()
 
     @property
     def storage(self):

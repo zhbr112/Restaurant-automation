@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class convertor_abstrakt(ABC):
     
     @abstractmethod

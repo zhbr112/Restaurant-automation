@@ -86,9 +86,12 @@ class test_factory(unittest.TestCase):
         print(report_csv_.create(storage.measurement_key()))
         print(report_csv_.create(storage.group_key()))
         print(report_csv_.create(storage.nomenculature_key()))
+        print(report_csv_.create(storage.receipt_key()))
+
         assert report_csv_.create(storage.group_key())!=''
         assert report_csv_.create(storage.measurement_key())!=''
         assert report_csv_.create(storage.nomenculature_key())!=''
+        assert report_csv_.create(storage.receipt_key())!=''
 
     def test_check_report_factory_csv(self):
         settings=settings_manager().settings
@@ -96,5 +99,3 @@ class test_factory(unittest.TestCase):
         report=report_factory()
         format="CSV"
         print(report.create(settings,format,data).create(storage.measurement_key()))
-
-

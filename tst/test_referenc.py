@@ -17,3 +17,6 @@ class test_referenc(unittest.TestCase):
         data=start_factory().storage.data
         w=convert_factory()
         print(w.convert_obj(data[storage.nomenculature_key()][0]))
+
+    def test_check_referenc(self):
+        start_factory.create_jornal()

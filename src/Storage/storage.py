@@ -6,6 +6,12 @@ class storage:
             cls.instance = super(storage, cls).__new__(cls)
         return cls.instance
     
+    def __init__(self) -> None:
+        self.data[storage.measurement_key()]=[]
+        self.data[storage.nomenculature_key()]=[]
+        self.data[storage.group_key()]=[]
+        self.data[storage.receipt_key()]=[]
+    
     @property
     def data(self)->dict:
         return self.__data
@@ -25,3 +31,7 @@ class storage:
     @staticmethod
     def receipt_key():
         return "receipts"
+    
+    @staticmethod
+    def jornal_key():
+        return "jornal"

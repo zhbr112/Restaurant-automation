@@ -10,17 +10,17 @@ from src.abstract_reference import abstract_reference
 
 class convert_factory:
     __maps={}
-    __maps[int] = basic_convertor()
-    __maps[uuid.UUID] = basic_convertor()
-    __maps[str] = basic_convertor()
-    __maps[type(None)] = basic_convertor()
-    __maps[list] = list_convertor()
-    __maps[dict] = dict_convertor()
-    __maps[datetime] = datetime_convertor()
+    __maps[int] = basic_convertor
+    __maps[uuid.UUID] = basic_convertor
+    __maps[str] = basic_convertor
+    __maps[type(None)] = basic_convertor
+    __maps[list] = list_convertor
+    __maps[dict] = dict_convertor
+    __maps[datetime] = datetime_convertor
     for classes in abstract_reference.__subclasses__():
-        __maps[classes] = reference_convertor()
+        __maps[classes] = reference_convertor
 
     @classmethod
     def convert_obj(self, obj):
-        converter = self.__maps[type(obj)]
+        converter = self.__maps[type(obj)]()
         return converter.convert(obj)     

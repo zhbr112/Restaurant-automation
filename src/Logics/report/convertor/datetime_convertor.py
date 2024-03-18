@@ -6,9 +6,10 @@ class datetime_convertor(convertor_abstrakt):
 
     @classmethod
     def convert(cls, obj: datetime):
-        return {"Год":obj.year,
-                "Месяц":obj.month,
-                "День":obj.day,
-                "Час":obj.hour,
-                "Минуты":obj.minute,
-                "Секунды":obj.second}
+        return {"Year": obj.year,
+                "Month": obj.month,
+                "Day": obj.day,
+                "Hour": obj.hour,
+                "Minute": obj.minute,
+                "Second": obj.second,
+                }

@@ -35,3 +35,7 @@ class storage:
     @staticmethod
     def jornal_key():
         return "jornal"
+    
+    @staticmethod
+    def  process_turn_key():
+        return "process_storage_turn"

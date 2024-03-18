@@ -87,6 +87,7 @@ class test_factory(unittest.TestCase):
         print(report_csv_.create(storage.group_key()))
         print(report_csv_.create(storage.nomenculature_key()))
         print(report_csv_.create(storage.receipt_key()))
+        print(report_csv_.create(storage.jornal_key()))
 
         assert report_csv_.create(storage.group_key())!=''
         assert report_csv_.create(storage.measurement_key())!=''

@@ -8,6 +8,7 @@ from src.settings_manager import settings_manager
 from src.settings import settings
 from src.Storage.storage import storage
 from src.models.receipe_model import receipe_model
+from src.Logics.process_storage_turn import process_storage_turn
 import datetime
 import random
 
@@ -181,7 +182,7 @@ class start_factory:
         storage_list=[storage_model.strorage_irk(),storage_model.strorage_no_irk()]
         for nomenclature in start_factory.create_nomenclature().list_positions:
             for _ in range(5):
-                tranzaction=storage_tranzaction(storage_list[random.randint(0,1)],
+                tranzaction=storage_tranzaction.create(storage_list[random.randint(0,1)],
                                                 nomenclature,
                                                 random.randint(-50,50),
                                                 nomenclature.unit_measurement,
@@ -202,6 +203,7 @@ class start_factory:
         self.__storage.data[storage.group_key()] = [nomenclatures]
         self.__storage.data[storage.receipt_key()] = start_factory.create_receipts()
         self.__storage.data[storage.jornal_key()] = start_factory.create_jornal()
+        self.__storage.data[storage.process_turn_key()]=process_storage_turn.create(self.__storage.data[storage.jornal_key()])
 
     @property
     def storage(self):

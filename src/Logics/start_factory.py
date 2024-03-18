@@ -185,7 +185,7 @@ class start_factory:
                                                 nomenclature,
                                                 random.randint(-50,50),
                                                 nomenclature.unit_measurement,
-                                                datetime.datetime.now())
+                                                datetime.datetime.strptime(f'2024-{random.randint(1,12)}-{random.randint(1,28)} {random.randint(0,23)}:{random.randint(0,59)}:{random.randint(0,59)}.0', '%Y-%m-%d %H:%M:%S.%f'))
                 jornal.append(tranzaction)
         return jornal
 

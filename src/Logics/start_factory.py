@@ -203,7 +203,6 @@ class start_factory:
         self.__storage.data[storage.group_key()] = [nomenclatures]
         self.__storage.data[storage.receipt_key()] = start_factory.create_receipts()
         self.__storage.data[storage.jornal_key()] = start_factory.create_jornal()
-        self.__storage.data[storage.process_turn_key()]=process_storage_turn.create(self.__storage.data[storage.jornal_key()])
 
     @property
     def storage(self):

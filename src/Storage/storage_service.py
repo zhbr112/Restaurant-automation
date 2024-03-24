@@ -16,13 +16,32 @@ class storage_service:
     __process=None
 
     @staticmethod
-    def create_turns(data, start_period:datetime, stop_period:datetime):
+    def create_turns_date(data, start_period:datetime, stop_period:datetime):
 
         if start_period>stop_period:
             raise arguent_exception("Некорректно переданы параметры!")
         prototype=storage_prototype(data)
-        transactions=prototype.filter(start_period,stop_period)
+        transactions=prototype.filter_date(start_period,stop_period)
         processing =process_factory().create(storage.process_turn_key())
+        rests = processing.create(transactions)
+
+        return rests
+    
+    @staticmethod
+    def create_turns_nom(data, nom):
+        prototype=storage_prototype(data)
+        transactions=prototype.filter_nom(nom)
+        processing =process_factory().create(storage.process_turn_key())
+        rests = processing.create(transactions)
+
+        return rests
+    
+    @staticmethod
+    def create_turns_receipt(data, receipt, storage_):
+        prototype=storage_prototype(data)
+        prototype.filter_receipt(receipt)
+        transactions=prototype.filter_storage(storage_.id)
+        processing = process_factory().create(storage.process_turn_key())
         rests = processing.create(transactions)
 
         return rests

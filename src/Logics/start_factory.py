@@ -207,6 +207,7 @@ class start_factory:
         self.__settings = settings_manager().settings
 
         nomenclatures=self.create_nomenclature()
+        
         self.__storage.data[storage.nomenculature_key()] = (nomenclatures.list_positions)
         self.__storage.data[storage.measurement_key()]=list(set([nomenclature.unit_measurement for nomenclature in nomenclatures.list_positions]))
         self.__storage.data[storage.group_key()] = [nomenclatures]

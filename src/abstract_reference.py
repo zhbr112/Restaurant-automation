@@ -5,7 +5,7 @@ from abc import ABC
 
 class abstract_reference(ABC):
     # Уникальный номер
-    __id: uuid.UUID=None
+    __id=None
     # Имя модели
     __name_model: str = ""
 
@@ -13,7 +13,7 @@ class abstract_reference(ABC):
     def __init__(self, name: str = None) -> None:
         self.__name_model = name
         if self.id is None:
-            self.__id=uuid.uuid4()
+            self.__id=str(uuid.uuid4())
 
     def _validate(self, value, type_, len_=None):
         """

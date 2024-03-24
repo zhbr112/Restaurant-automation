@@ -3,10 +3,14 @@ from src.models.group_nomenclature_model import group_nomenclature_model
 from src.models.storage_model import storage_model
 from src.models.company_model import company_model
 from src.models.nomenclature_model import nomenclature_model
+from src.models.storage_tranzaction import storage_tranzaction
 from src.settings_manager import settings_manager
 from src.settings import settings
 from src.Storage.storage import storage
 from src.models.receipe_model import receipe_model
+from src.Logics.process_storage_turn import process_storage_turn
+import datetime
+import random
 
 
 class start_factory:
@@ -172,6 +176,20 @@ class start_factory:
         result.append(item)
         return result
 
+    @staticmethod
+    def create_jornal():
+        jornal=[]
+        storage_list=[storage_model.strorage_irk(),storage_model.strorage_no_irk()]
+        for nomenclature in start_factory.create_nomenclature().list_positions:
+            for _ in range(5):
+                tranzaction=storage_tranzaction.create(storage_list[random.randint(0,1)],
+                                                nomenclature,
+                                                random.randint(-50,50),
+                                                nomenclature.unit_measurement,
+                                                datetime.datetime.strptime(f'2024-{random.randint(1,12)}-{random.randint(1,28)} {random.randint(0,23)}:{random.randint(0,59)}:{random.randint(0,59)}.0', '%Y-%m-%d %H:%M:%S.%f'))
+                jornal.append(tranzaction)
+        return jornal
+
     def __build(self):
         """
             Внесение данных в хранилище
@@ -184,6 +202,8 @@ class start_factory:
         self.__storage.data[storage.measurement_key()]=list(set([nomenclature.unit_measurement for nomenclature in nomenclatures.list_positions]))
         self.__storage.data[storage.group_key()] = [nomenclatures]
         self.__storage.data[storage.receipt_key()] = start_factory.create_receipts()
+        self.__storage.data[storage.jornal_key()] = start_factory.create_jornal()
+        self.__storage.data[storage.process_turn_key()]=process_storage_turn.create(self.__storage.data[storage.jornal_key()])
 
     @property
     def storage(self):

@@ -50,7 +50,7 @@ class test_models(unittest.TestCase):
             unit_measurement1 = unit_measurement_model("грамм", 1)
             unit_measurement2 = unit_measurement_model("кг", 1000, unit_measurement1)
             group_nomenclature = group_nomenclature_model()
-            storage = storage_model()
+            storage = storage_model(storage_model.strorage_irk())
             nomenclature1 = nomenclature_model("1dsf")
             nomenclature2 = nomenclature_model("1dsfddfdsdsssssssssssssssssssf")
 

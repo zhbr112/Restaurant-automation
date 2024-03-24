@@ -2,6 +2,7 @@ from src.abstract_reference import abstract_reference
 from src.argument_exception import arguent_exception
 from src.error_proxy import error_proxy
 from datetime import datetime
+import random
 
 
 # Единица измерения
@@ -25,7 +26,7 @@ class unit_measurement_model(abstract_reference):
         self.name_measurement = name_measurement
         self.conversion_factor = conversion_factor
         self.__basic_unit_measurement=basic_unit_measurement
-        self.date_time=datetime.now()
+        self.date_time=datetime.strptime(f'2024-{random.randint(1,12)}-{random.randint(1,28)} {random.randint(0,23)}:{random.randint(0,59)}:{random.randint(0,59)}.0', '%Y-%m-%d %H:%M:%S.%f')
         
         
 

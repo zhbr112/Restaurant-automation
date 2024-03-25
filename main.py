@@ -55,27 +55,24 @@ def get_rests_date():
 
     return result
 
-@app.route("/api/storage/<nomenclature__name>/turns", methods=["GET"])
-def get_rests_nom(nomenclature_name: str):
+@app.route("/api/storage/<nomenclature_id>/turns", methods=["GET"])
+def get_rests_nom(nomenclature_id: str):
 
-    rests=storage_service.create_turns_nom(data[storage.jornal_key()], nomenclature_name)
+    rests=storage_service.create_turns_nom(data[storage.jornal_key()], nomenclature_id)
 
     result=storage_service.create_response(rests)
 
     return result
 
-@app.route("/api/storage/<receipt_name>/debits", methods=["GET"])
-def get_rests(receipt_name: str):
+@app.route("/api/storage/<receipt_id>/debits", methods=["GET"])
+def get_rests(receipt_id: str):
     args = request.args
     if 'storage' not in args:
         raise arguent_exception("Не указан склад!")
 
-    receipt = [recipe for recipe in start_factory().storage.data[storage.receipt_key()] if recipe.name == receipt_name][0]
-    storage_ = [storage for storage in start_factory().storage.data[storage.storage_key()] if storage.name == args['storage']][0]
+    rests=storage_service.create_turns_receipt(data[storage.jornal_key()], receipt_id,  args['storage'])
 
-    rests=storage_service.create_turns_receipt(data[storage.jornal_key()], receipt, storage_)
-
-    storage_service.create_(rests, receipt, storage_)
+    storage_service.create_grad(rests, receipt_id,  args['storage'])
 
     result=storage_service.create_response({'success': True})
 

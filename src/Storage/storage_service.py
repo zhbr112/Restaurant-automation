@@ -39,7 +39,9 @@ class storage_service:
         return rests
     
     @staticmethod
-    def create_turns_receipt(data, receipt, storage_):
+    def create_turns_receipt(data, receipt_id, storages):
+        receipt = storage_service.search_receipt(receipt_id)
+        storage_ = storage_service.search_storage(storages)
         prototype=storage_prototype(data)
         transactions=prototype.filter_storage(storage_.name).filter_receipt(receipt)
         processing = process_factory().create(storage.process_turn_key())
@@ -48,7 +50,9 @@ class storage_service:
         return rests
     
     @staticmethod
-    def create_(rests, receipt, storage_):
+    def create_grad(rests, receipt_id, storages):
+        receipt = storage_service.search_receipt(receipt_id)
+        storage_ = storage_service.search_storage(storages)
         recipe_need = {}
         for recipe_row in receipt.rows:
             recipe_need[receipt.rows[recipe_row].nomenclature.full_name] = receipt.rows[recipe_row].size
@@ -62,6 +66,20 @@ class storage_service:
 
         return start_factory().storage.data[storage.jornal_key()] + transactions
     
+    @staticmethod
+    def search_receipt(receipt_id):
+        receipt = [recipe for recipe in start_factory().storage.data[storage.receipt_key()] if recipe.id == receipt_id][0]
+        if receipt is None:
+            raise arguent_exception('Не верно переданы параметры')
+        return receipt
+        
+    @staticmethod
+    def search_storage(storages):
+        storage_ = [storage for storage in start_factory().storage.data[storage.storage_key()] if storage.name == storages][0]
+        if storage_ is None:
+            raise arguent_exception('Не верно переданы параметры')
+        return storage_
+        
     @staticmethod
     def create_response(data):
         app = Flask(__name__)

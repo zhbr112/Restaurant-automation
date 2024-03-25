@@ -24,14 +24,14 @@ class storage_prototype():
 
         return storage_prototype(result)
 
-    def filter_nom(self, nomenclature_name):
+    def filter_nom(self, nomenclature_id):
         if len(self.__data) <= 0:
             raise arguent_exception("Некорректно переданы параметры!")
 
         result = []
         print([i.nomenclature.id for i in self.data])
         for item in self.__data:
-            if item.nomenclature.full_name == nomenclature_name:
+            if item.nomenclature.id == nomenclature_id:
                 result.append(item)
 
         return storage_prototype(result)
@@ -50,9 +50,9 @@ class storage_prototype():
             raise arguent_exception("Некорректно переданы параметры!")
 
         result = []
-        nomenclatures=[receipt.rows[nom].nomenclature.full_name for nom in receipt.rows]
+        nomenclatures=[receipt.rows[nom].nomenclature.id for nom in receipt.rows]
         for item in self.__data:
-            if item.nomenclature.full_name in nomenclatures:
+            if item.nomenclature.id in nomenclatures:
                 result.append(item)
 
         return storage_prototype(result)

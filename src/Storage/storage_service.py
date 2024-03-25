@@ -7,6 +7,8 @@ from src.Logics.report.convertor.convert_factory import convert_factory
 from src.Storage.storage_prototype import storage_prototype
 from src.settings_manager import settings_manager
 from flask import Flask, request
+from src.Logics.start_factory import start_factory
+from src.models.storage_tranzaction import storage_tranzaction
 import json
 
 
@@ -23,7 +25,7 @@ class storage_service:
         prototype=storage_prototype(data)
         transactions=prototype.filter_date(start_period,stop_period)
         processing =process_factory().create(storage.process_turn_key())
-        rests = processing.create(transactions)
+        rests = processing.create(transactions.data)
 
         return rests
     
@@ -32,19 +34,33 @@ class storage_service:
         prototype=storage_prototype(data)
         transactions=prototype.filter_nom(nom)
         processing =process_factory().create(storage.process_turn_key())
-        rests = processing.create(transactions)
+        rests = processing.create(transactions.data)
 
         return rests
     
     @staticmethod
     def create_turns_receipt(data, receipt, storage_):
         prototype=storage_prototype(data)
-        prototype.filter_receipt(receipt)
-        transactions=prototype.filter_storage(storage_.name)
+        transactions=prototype.filter_storage(storage_.name).filter_receipt(receipt)
         processing = process_factory().create(storage.process_turn_key())
-        rests = processing.create(transactions)
+        rests = processing.create(transactions.data)
 
         return rests
+    
+    @staticmethod
+    def create_(rests, receipt, storage_):
+        recipe_need = {}
+        for recipe_row in receipt.rows:
+            recipe_need[receipt.rows[recipe_row].nomenclature.full_name] = receipt.rows[recipe_row].size
+
+        transactions = []
+        for rest in rests:
+            print(recipe_need[rest.nomenclature.full_name], rest.turn)
+            if recipe_need[rest.nomenclature.full_name] > rest.turn:
+                raise arguent_exception('Не удалось произвести списование! Остатков на складе не достаточно!')
+            transactions.append(storage_tranzaction().create(storage_, rest.nomenclature, -recipe_need[rest.nomenclature.full_name], rest.unit_measurement, period=datetime.now()))
+
+        return start_factory().storage.data[storage.jornal_key()] + transactions
     
     @staticmethod
     def create_response(data):

@@ -75,25 +75,11 @@ def get_rests(receipt_name: str):
 
     rests=storage_service.create_turns_receipt(data[storage.jornal_key()], receipt, storage_)
 
-    recipe_need = {}
-    for recipe_row in receipt.rows:
-        recipe_need[receipt.rows[recipe_row].nomenclature.full_name] = receipt.rows[recipe_row].size
+    storage_service.create_(rests, receipt, storage_)
 
-    transactions = []
-    print(rests,receipt.name,storage_.name)
-    for rest in rests:
-        print(recipe_need[rest.nomenclature.full_name], rest.turn)
-        if recipe_need[rest.nomenclature.full_name] > rest.turn:
-            raise arguent_exception('Не удалось произвести списование! Остатков на складе не достаточно!')
-        transactions.append(storage_tranzaction().create(storage_, rest.nomenclature, -recipe_need[rest.nomenclature.full_name], rest.unit_measurement, period=datetime.now()))
+    result=storage_service.create_response({'success': True})
 
-    start_factory().storage.data[storage.jornal_key()] += transactions
-
-    return app.response_class(
-            response = json.dumps({'success': True}),
-            status=200,
-            mimetype="application/json; charset=utf-8"
-        )
+    return result
 
 
 if __name__ == "__main__":

@@ -22,8 +22,7 @@ class storage_prototype():
             if item.period > start_period and item.period <= stop_period:
                 result.append(item)
 
-        self.__data=result
-        return self.__data
+        return storage_prototype(result)
 
     def filter_nom(self, nomenclature_name):
         if len(self.__data) <= 0:
@@ -35,8 +34,7 @@ class storage_prototype():
             if item.nomenclature.full_name == nomenclature_name:
                 result.append(item)
 
-        self.__data=result
-        return self.__data
+        return storage_prototype(result)
     
     def filter_storage(self, storage_name):
 
@@ -45,8 +43,7 @@ class storage_prototype():
             if item.storage.name == storage_name:
                 result.append(item)
 
-        self.__data=result
-        return self.__data
+        return storage_prototype(result)
     
     def filter_receipt(self, receipt):
         if len(self.__data) <= 0:
@@ -58,13 +55,8 @@ class storage_prototype():
             if item.nomenclature.full_name in nomenclatures:
                 result.append(item)
 
-        self.__data=result
-        return self.__data
+        return storage_prototype(result)
     
     @property
     def data(self):
         return self.__data
-    
-    @data.setter
-    def data(self, value):
-        self.__data=value

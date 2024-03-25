@@ -55,10 +55,10 @@ def get_rests_date():
 
     return result
 
-@app.route("/api/storage/<nomenclature_id>/turns", methods=["GET"])
-def get_rests_nom(nomenclature_id: str):
+@app.route("/api/storage/<nomenclature__name>/turns", methods=["GET"])
+def get_rests_nom(nomenclature_name: str):
 
-    rests=storage_service.create_turns_nom(data[storage.jornal_key()], nomenclature_id)
+    rests=storage_service.create_turns_nom(data[storage.jornal_key()], nomenclature_name)
 
     result=storage_service.create_response(rests)
 
@@ -80,7 +80,9 @@ def get_rests(receipt_name: str):
         recipe_need[receipt.rows[recipe_row].nomenclature.full_name] = receipt.rows[recipe_row].size
 
     transactions = []
+    print(rests,receipt.name,storage_.name)
     for rest in rests:
+        print(recipe_need[rest.nomenclature.full_name], rest.turn)
         if recipe_need[rest.nomenclature.full_name] > rest.turn:
             raise arguent_exception('Не удалось произвести списование! Остатков на складе не достаточно!')
         transactions.append(storage_tranzaction().create(storage_, rest.nomenclature, -recipe_need[rest.nomenclature.full_name], rest.unit_measurement, period=datetime.now()))

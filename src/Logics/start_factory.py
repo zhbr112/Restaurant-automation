@@ -184,7 +184,7 @@ class start_factory:
             for _ in range(5):
                 tranzaction=storage_tranzaction.create(storage_list[random.randint(0,1)],
                                                 nomenclature,
-                                                random.randint(-50,50),
+                                                random.randint(-1,500),
                                                 nomenclature.unit_measurement,
                                                 datetime.datetime.strptime(f'2024-{random.randint(1,12)}-{random.randint(1,28)} {random.randint(0,23)}:{random.randint(0,59)}:{random.randint(0,59)}.0', '%Y-%m-%d %H:%M:%S.%f'))
                 jornal.append(tranzaction)
@@ -204,7 +204,6 @@ class start_factory:
             Внесение данных в хранилище
         """
         self.__storage = storage()
-        self.__settings = settings_manager().settings
 
         nomenclatures=self.create_nomenclature()
         

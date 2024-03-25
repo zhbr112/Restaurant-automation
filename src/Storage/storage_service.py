@@ -40,7 +40,7 @@ class storage_service:
     def create_turns_receipt(data, receipt, storage_):
         prototype=storage_prototype(data)
         prototype.filter_receipt(receipt)
-        transactions=prototype.filter_storage(storage_.id)
+        transactions=prototype.filter_storage(storage_.name)
         processing = process_factory().create(storage.process_turn_key())
         rests = processing.create(transactions)
 

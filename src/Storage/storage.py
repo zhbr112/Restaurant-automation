@@ -11,6 +11,7 @@ class storage:
         self.data[storage.nomenculature_key()]=[]
         self.data[storage.group_key()]=[]
         self.data[storage.receipt_key()]=[]
+        self.data[storage.storage_key()]=[]
     
     @property
     def data(self)->dict:
@@ -23,6 +24,10 @@ class storage:
     @staticmethod
     def measurement_key():
         return "measurement"
+    
+    @staticmethod
+    def storage_key():
+        return "storage"
     
     @staticmethod
     def group_key():

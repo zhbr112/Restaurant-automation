@@ -17,6 +17,8 @@ class receipe_model(abstract_reference):
     
     # Описание
     __comments: str = ""
+
+    __name =  ""
     
     def __init__(self):
         super().__init__('receipe_model')
@@ -40,6 +42,7 @@ class receipe_model(abstract_reference):
         # Подготовим словарь со списком номенклатуры
         nomenclatures = data.list_positions
         receipt = receipe_model()
+        receipt.name=comments
         for position in items:
             # Получаем список кортежей и берем первое значение
             _list =  list(position.items())        
@@ -86,7 +89,7 @@ class receipe_model(abstract_reference):
     
     @property         
     def netto(self):
-        return self.__netto                        
+        return self.__netto                         
         
     @netto.setter
     def netto(self, value: int):
@@ -94,6 +97,14 @@ class receipe_model(abstract_reference):
             Вес нетто
         """
         self.__netto = value
+
+    @property         
+    def name(self):
+        return self.__name
+    
+    @name.setter
+    def name(self, value):
+        self.__name = value
         
     @property    
     def instructions(self):

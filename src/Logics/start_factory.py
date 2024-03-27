@@ -109,7 +109,7 @@ class start_factory:
             {"Яйца": 1},
             {"Ванилин": 5},
         ]
-        item = receipe_model.create_receipt("ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ", items, data)
+        item = receipe_model.create_receipt("wafli", items, data)
 
         # Шаги приготовления
         item.instructions.append(
@@ -143,7 +143,7 @@ class start_factory:
             {"Горчица дижонская": 5},
             {"Яйца": 2},
         ]
-        item = receipe_model.create_receipt("Цезарь с курицей", items, data)
+        item = receipe_model.create_receipt("chezar", items, data)
         item.instructions.append(
             "Нарезать куриное филе кубиками, нарубите чеснок, нарежьте хлеб на кубики."
         )
@@ -172,38 +172,47 @@ class start_factory:
             {"Корица": 5},
             {"Какао": 20},
         ]
-        item=receipe_model.create_receipt("Безе", items, data)
+        item=receipe_model.create_receipt("beze", items, data)
         result.append(item)
         return result
 
     @staticmethod
     def create_jornal():
         jornal=[]
-        storage_list=[storage_model.strorage_irk(),storage_model.strorage_no_irk()]
+        storage_list=start_factory.create_storages()
         for nomenclature in start_factory.create_nomenclature().list_positions:
             for _ in range(5):
                 tranzaction=storage_tranzaction.create(storage_list[random.randint(0,1)],
                                                 nomenclature,
-                                                random.randint(-50,50),
+                                                random.randint(-1,500),
                                                 nomenclature.unit_measurement,
                                                 datetime.datetime.strptime(f'2024-{random.randint(1,12)}-{random.randint(1,28)} {random.randint(0,23)}:{random.randint(0,59)}:{random.randint(0,59)}.0', '%Y-%m-%d %H:%M:%S.%f'))
                 jornal.append(tranzaction)
         return jornal
+
+    @staticmethod
+    def create_storages():
+        storages=[]
+
+        storages.append(storage_model.strorage_irk())
+        storages.append(storage_model.strorage_no_irk())
+
+        return storages
 
     def __build(self):
         """
             Внесение данных в хранилище
         """
         self.__storage = storage()
-        self.__settings = settings_manager().settings
 
         nomenclatures=self.create_nomenclature()
+        
         self.__storage.data[storage.nomenculature_key()] = (nomenclatures.list_positions)
         self.__storage.data[storage.measurement_key()]=list(set([nomenclature.unit_measurement for nomenclature in nomenclatures.list_positions]))
         self.__storage.data[storage.group_key()] = [nomenclatures]
         self.__storage.data[storage.receipt_key()] = start_factory.create_receipts()
         self.__storage.data[storage.jornal_key()] = start_factory.create_jornal()
-        self.__storage.data[storage.process_turn_key()]=process_storage_turn.create(self.__storage.data[storage.jornal_key()])
+        self.__storage.data[storage.storage_key()] = start_factory.create_storages()
 
     @property
     def storage(self):

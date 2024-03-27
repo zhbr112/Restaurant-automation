@@ -6,13 +6,9 @@ class process_storage_turn:
     def create(self, transactions):
         res = {}
         for t in transactions:
-            conversion=1            
-            while(t.unit_measurement.basic_unit_measurement is not None):
-                conversion*=t.unit_measurement.conversion_factor
-                t.unit_measurement=t.unit_measurement.basic_unit_measurement
 
             key = (t.storage, t.nomenclature, t.unit_measurement)
-            value = t.count*conversion
+            value = t.count
             if key in res.keys():
                 res[key] += value
             else:
